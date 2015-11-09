@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.knoesis.org/khealth/khealth#"
+     xml:base="http://www.knoesis.org/khealth/khealth"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.knoesis.org/khealth/khealth">
+        <owl:imports rdf:resource="http://www.knoesis.org/khealth/asthma"/>
+        <owl:imports rdf:resource="http://www.knoesis.org/kheath/sensors"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaRelared_PhysicalProperty -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/khealth/asthma#AsthmaRelared_PhysicalProperty">
+        <owl:equivalentClass rdf:resource="http://www.knoesis.org/kheath/sensors#PhysicalProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaRelatedPhysiologicalDisorder -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/khealth/asthma#AsthmaRelatedPhysiologicalDisorder">
+        <owl:equivalentClass rdf:resource="http://www.knoesis.org/kheath/sensors#PhysiologicalProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#PhysicalProperty -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#PhysicalProperty"/>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#PhysiologicalProperty -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#PhysiologicalProperty"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#CO_index -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#CO_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#NO_index -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#NO_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#air_quality_index -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#air_quality_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#co_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/kheath/sensors#co_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#dust_level -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#dust_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#mold_level -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#mold_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#no_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/kheath/sensors#no_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#outdoor_humidity -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#outdoor_humidity">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#outdoor_temperature -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#outdoor_temperature">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#pollen-level -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/kheath/sensors#pollen-level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/kheath/sensors#pollen_level -->
+
+    <rdf:Description rdf:about="http://www.knoesis.org/kheath/sensors#pollen_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth/asthma#Trigger"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

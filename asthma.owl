@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.knoesis.org/khealth/asthma"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     ontologyIRI="http://www.knoesis.org/khealth/asthma">
+    <Prefix name="" IRI="http://www.knoesis.org/khealth/asthma#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Activity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AsthmaRelatedPhysiologicalDisorder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Asthma_Severity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BadControlled"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ControlLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Drug"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Mild_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Moderate_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PoorlyControlled"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Severe_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Symptoms"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Treatment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Trigger"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#WellControlled"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasAsthmaLevel"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasSymptom"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Breathlessness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#activity_level"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#aphasia"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#body_temperature"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#body_weight"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#chest_tightness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#courgh"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#exacerbation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#heartrate"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#lungfuncion"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#nasal_dilatation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#night-time_wakfulness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#sleep"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wheezing"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/426656000"/>
+        <Class IRI="#Severe_Persistent_Asthma"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/426979002"/>
+        <Class IRI="#Mild_Persistent_Asthma"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/427295004"/>
+        <Class IRI="#Moderate_Persistent_Asthma"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/427603009"/>
+        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#Activity"/>
+        <Class IRI="#Treatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BadControlled"/>
+        <Class IRI="#ControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Drug"/>
+        <Class IRI="#Treatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Mild_Persistent_Asthma"/>
+        <Class IRI="#Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Moderate_Persistent_Asthma"/>
+        <Class IRI="#Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Persistent_Asthma"/>
+        <Class IRI="#Asthma_Severity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PoorlyControlled"/>
+        <Class IRI="#ControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Severe_Persistent_Asthma"/>
+        <Class IRI="#Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Symptoms"/>
+        <Class IRI="#AsthmaRelatedPhysiologicalDisorder"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#WellControlled"/>
+        <Class IRI="#ControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+        <Class IRI="#Asthma_Severity"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Symptoms"/>
+        <NamedIndividual IRI="#Breathlessness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#activity_level"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelatedPhysiologicalDisorder"/>
+        <NamedIndividual IRI="#aphasia"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#body_temperature"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#body_weight"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Symptoms"/>
+        <NamedIndividual IRI="#chest_tightness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Symptoms"/>
+        <NamedIndividual IRI="#courgh"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Symptoms"/>
+        <NamedIndividual IRI="#exacerbation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#heartrate"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#lungfuncion"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelatedPhysiologicalDisorder"/>
+        <NamedIndividual IRI="#nasal_dilatation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelatedPhysiologicalDisorder"/>
+        <NamedIndividual IRI="#night-time_wakfulness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#AsthmaRelared_PhysicalProperty"/>
+        <NamedIndividual IRI="#sleep"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Symptoms"/>
+        <NamedIndividual IRI="#wheezing"/>
+    </ClassAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
