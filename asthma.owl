@@ -37,10 +37,22 @@
         <Class IRI="#BadControlled"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Breathlessness"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Chest_Tightness"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#ControlLevel"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Cough"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Drug"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Exacerbation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Mild_Persistent_Asthma"/>
@@ -70,6 +82,9 @@
         <Class IRI="#WellControlled"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Wheezing"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
     </Declaration>
     <Declaration>
@@ -97,7 +112,7 @@
         <NamedIndividual IRI="#chest_tightness"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#courgh"/>
+        <NamedIndividual IRI="#cough"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#exacerbation"/>
@@ -116,9 +131,6 @@
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#sleep"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#wheezing"/>
     </Declaration>
     <EquivalentClasses>
         <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/426656000"/>
@@ -145,8 +157,24 @@
         <Class IRI="#ControlLevel"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Breathlessness"/>
+        <Class IRI="#Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Chest_Tightness"/>
+        <Class IRI="#Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Cough"/>
+        <Class IRI="#Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Drug"/>
         <Class IRI="#Treatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Exacerbation"/>
+        <Class IRI="#Symptoms"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Mild_Persistent_Asthma"/>
@@ -177,11 +205,15 @@
         <Class IRI="#ControlLevel"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Wheezing"/>
+        <Class IRI="#Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
         <Class IRI="#Asthma_Severity"/>
     </SubClassOf>
     <ClassAssertion>
-        <Class IRI="#Symptoms"/>
+        <Class IRI="#Breathlessness"/>
         <NamedIndividual IRI="#Breathlessness"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -201,15 +233,15 @@
         <NamedIndividual IRI="#body_weight"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Symptoms"/>
+        <Class IRI="#Chest_Tightness"/>
         <NamedIndividual IRI="#chest_tightness"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Symptoms"/>
-        <NamedIndividual IRI="#courgh"/>
+        <Class IRI="#Cough"/>
+        <NamedIndividual IRI="#cough"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Symptoms"/>
+        <Class IRI="#Exacerbation"/>
         <NamedIndividual IRI="#exacerbation"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -231,10 +263,6 @@
     <ClassAssertion>
         <Class IRI="#AsthmaRelared_PhysicalProperty"/>
         <NamedIndividual IRI="#sleep"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#Symptoms"/>
-        <NamedIndividual IRI="#wheezing"/>
     </ClassAssertion>
 </Ontology>
 

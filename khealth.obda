@@ -1,0 +1,31 @@
+[PrefixDeclaration]
+:		http://www.knoesis.org/khealth/khealth#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+ssn:		http://purl.oclc.org/NET/ssnx/ssn#
+xsd:		http://www.w3.org/2001/XMLSchema#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+asthma:		http://www.knoesis.org/khealth/asthma#
+sensors:		http://www.knoesis.org/kheath/sensors#
+
+[SourceDeclaration]
+sourceUri	mySQL
+connectionUrl	jdbc:mysql://localhost:3306/
+username	ric
+password	
+driverClass	com.mysql.jdbc.Driver
+
+[MappingDeclaration] @collection [[
+mappingId	SymptomObservation
+target		:symptom/{Patients_ID}/{Date}/ a sensors:SymptomObservation . 
+source		SELECT Patients_ID, Date, Value
+			FROM asthmadb.Answers
+			WHERE Questions_ID IN (7, 8, 9);
+
+mappingId	CoughObservation(0)
+target		:symptom/{Patients_ID}/{Date}/ a :CoughObservation . 
+source		SELECT Patients_ID, Date, Value
+			FROM asthmadb.Answers
+			WHERE Questions_ID = 7;
+]]
+
