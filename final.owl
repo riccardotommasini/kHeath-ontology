@@ -1,0 +1,464 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.knoesis.org/kheath/sensors"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.knoesis.org/kheath/sensors">
+    <Prefix name="" IRI="http://www.knoesis.org/kheath/sensors#"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="ssn" IRI="http://purl.oclc.org/NET/ssnx/ssn#"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="asthma" IRI="http://www.knoesis.org/khealth/asthma#"/>
+    <Import>http://purl.oclc.org/NET/ssnx/ssn</Import>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Breathlessness"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Chest_Tightness"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Cough"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Exacerbation"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Mild_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Moderate_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Severe_Persistent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Wheezing"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#ActivityLevelSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#HeartrateSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#Pedometer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AQISensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AQISensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ActivityLevelSensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#BooleanObservationValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ControlLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CoughObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Drug"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#EnvironmentalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HearthRateOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorHumiditySensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorHumiditySensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorTermometer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorTermometerOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PedometerOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysicalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PhysiologicalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PollenLevelSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PollenLevelSensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#QualitativeObservationValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#QuantitativeObservationValue"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Scale"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ScaleOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SleepMonitor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SleepMonitorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SymptomObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SymptomsMonitor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SymptomsMonitorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Treatment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Trigger"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#kHealthPlatform"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#CO_index"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#NO_index"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#No"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Yes"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#air_quality_index"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#dust_level"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#mold_level"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#outdoor_humidity"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#outdoor_temperature"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#pollen_level"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#steps"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+        <Class IRI="#PhysicalProperty"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+        <Class IRI="#PhysiologicalProperty"/>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Breathlessness"/>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Chest_Tightness"/>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Cough"/>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Exacerbation"/>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Mild_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Moderate_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Severe_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Wheezing"/>
+        <Class abbreviatedIRI="asthma:Symptoms"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#ActivityLevelSensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#HeartrateSensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#Pedometer"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQISensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQISensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ActivityLevelSensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#BooleanObservationValue"/>
+        <Class abbreviatedIRI="ssn:ObservationValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CoughObservation"/>
+        <Class IRI="#SymptomObservation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Drug"/>
+        <Class IRI="#Treatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#EnvironmentalProperty"/>
+        <Class abbreviatedIRI="ssn:Property"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HearthRateOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumiditySensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumiditySensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTermometer"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTermometerOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PedometerOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysicalProperty"/>
+        <Class abbreviatedIRI="ssn:Property"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PhysiologicalProperty"/>
+        <Class abbreviatedIRI="ssn:Property"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelSensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelSensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#QualitativeObservationValue"/>
+        <Class abbreviatedIRI="ssn:ObservationValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#QuantitativeObservationValue"/>
+        <Class abbreviatedIRI="ssn:ObservationValue"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Scale"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ScaleOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepMonitor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepMonitorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#SymptomsMonitorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#SymptomsMonitor"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomsMonitor"/>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomsMonitorOutput"/>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomsMonitorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#BooleanObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomsMonitorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:isProducedBy"/>
+            <Class IRI="#SymptomsMonitor"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#kHealthPlatform"/>
+        <Class abbreviatedIRI="ssn:Platform"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#CO_index"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#NO_index"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BooleanObservationValue"/>
+        <NamedIndividual IRI="#No"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#BooleanObservationValue"/>
+        <NamedIndividual IRI="#Yes"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#air_quality_index"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#dust_level"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#mold_level"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#outdoor_humidity"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#outdoor_temperature"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#EnvironmentalProperty"/>
+        <NamedIndividual IRI="#pollen_level"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#PhysicalProperty"/>
+        <NamedIndividual IRI="#steps"/>
+    </ClassAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
