@@ -10,13 +10,14 @@
 
 
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
-     xml:base="http://www.knoesis.org/kheath/sensors"
+     xml:base="http://www.knoesis.org/kheath"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     ontologyIRI="http://www.knoesis.org/kheath/sensors">
-    <Prefix name="" IRI="http://www.knoesis.org/kheath/sensors#"/>
+     ontologyIRI="http://www.knoesis.org/kheath">
+    <Prefix name="" IRI="http://www.knoesis.org/kheath#"/>
+    <Prefix name="k" IRI="http://www.knoesis.org/kheath/"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="ssn" IRI="http://purl.oclc.org/NET/ssnx/ssn#"/>
@@ -25,10 +26,10 @@
     <Prefix name="asthma" IRI="http://www.knoesis.org/khealth/asthma#"/>
     <Import>http://purl.oclc.org/NET/ssnx/ssn</Import>
     <Declaration>
-        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
     </Declaration>
     <Declaration>
         <Class abbreviatedIRI="asthma:Asthma_Severity"/>
@@ -64,46 +65,88 @@
         <Class abbreviatedIRI="asthma:Wheezing"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#ActivityLevelSensor"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#HeartrateSensor"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
     </Declaration>
     <Declaration>
         <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#Pedometer"/>
+        <Class IRI="#AQI"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#AQISensor"/>
+        <Class IRI="#AQIObservation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#AQISensorOutput"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#ActivityLevelSensorOutput"/>
+        <Class IRI="#AQI_Sensor"/>
     </Declaration>
     <Declaration>
         <Class IRI="#BooleanObservationValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#ControlLevel"/>
+        <Class IRI="#CO_Index"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#CoughObservation"/>
+        <Class IRI="#CO_IndexObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CO_Sensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#CO_SensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ControlLevel"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Drug"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#DrugMonitor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DrugMonitorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DrugObservation"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#EnvironmentalProperty"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#HearthRateOutput"/>
+        <Class IRI="#Humidity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HumidityObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HumiditySensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HumiditySensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Medication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NO_Index"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NO_IndexObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NO_Sensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#NO_SensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorHumidity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorHumidityObservation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#OutdoorHumiditySensor"/>
@@ -112,19 +155,28 @@
         <Class IRI="#OutdoorHumiditySensorOutput"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#OutdoorTermometer"/>
+        <Class IRI="#OutdoorTemperature"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#OutdoorTermometerOutput"/>
+        <Class IRI="#OutdoorTemperatureObservation"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#PedometerOutput"/>
+        <Class IRI="#OutdoorTemperatureSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OutdoorTemperatureSensorOutput"/>
     </Declaration>
     <Declaration>
         <Class IRI="#PhysicalProperty"/>
     </Declaration>
     <Declaration>
         <Class IRI="#PhysiologicalProperty"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PollenLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#PollenLevelObservation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#PollenLevelSensor"/>
@@ -139,16 +191,19 @@
         <Class IRI="#QuantitativeObservationValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Scale"/>
+        <Class IRI="#RelativeObservationValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#ScaleOutput"/>
+        <Class IRI="#SleepDisorder"/>
     </Declaration>
     <Declaration>
         <Class IRI="#SleepMonitor"/>
     </Declaration>
     <Declaration>
         <Class IRI="#SleepMonitorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SleepObservation"/>
     </Declaration>
     <Declaration>
         <Class IRI="#SymptomObservation"/>
@@ -158,6 +213,18 @@
     </Declaration>
     <Declaration>
         <Class IRI="#SymptomsMonitorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Temperature"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TemperatureObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TemperatureSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TemperatureSensorOutput"/>
     </Declaration>
     <Declaration>
         <Class IRI="#Treatment"/>
@@ -172,22 +239,49 @@
         <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasBoleanValue"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasQualitativeValue"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasQuantitativeValue"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasRelativeValue"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#CO_index"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#NO_index"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#No"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#Yes"/>
+        <NamedIndividual IRI="#Subject5App"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#air_quality_index"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#albuterol"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#breathlessness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#chest_tightness"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#cough"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#dust_level"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#exacerbation"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#humidity"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#mold_level"/>
@@ -202,15 +296,28 @@
         <NamedIndividual IRI="#pollen_level"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#sleep"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#steps"/>
     </Declaration>
-    <EquivalentClasses>
-        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
-        <Class IRI="#PhysicalProperty"/>
-    </EquivalentClasses>
+    <Declaration>
+        <NamedIndividual IRI="#temperature"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#wheezing"/>
+    </Declaration>
     <EquivalentClasses>
         <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
         <Class IRI="#PhysiologicalProperty"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
+        <Class IRI="#PhysicalProperty"/>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#DrugObservation"/>
+        <Class IRI="#Treatment"/>
     </EquivalentClasses>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Breathlessness"/>
@@ -238,7 +345,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
-        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Severe_Persistent_Asthma"/>
@@ -253,14 +360,6 @@
         <Class abbreviatedIRI="asthma:Symptoms"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#ActivityLevelSensor"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#HeartrateSensor"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
@@ -269,60 +368,373 @@
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#Pedometer"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class IRI="#AQI"/>
+        <Class IRI="#EnvironmentalProperty"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#AQISensor"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class IRI="#AQIObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQIObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#AQISensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQIObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#AQI"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQIObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#AQI_Sensor"/>
+        </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#AQISensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#ActivityLevelSensorOutput"/>
-        <Class abbreviatedIRI="ssn:SensorOutput"/>
+        <Class IRI="#AQISensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQI_Sensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#AQI_Sensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#AQI"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#BooleanObservationValue"/>
-        <Class abbreviatedIRI="ssn:ObservationValue"/>
+        <Class IRI="#QualitativeObservationValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#CoughObservation"/>
-        <Class IRI="#SymptomObservation"/>
+        <Class IRI="#CO_Index"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_IndexObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_IndexObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#CO_SensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_IndexObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#CO_Index"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_IndexObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#CO_Sensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_Sensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_Sensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#CO_Index"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_SensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#CO_SensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#Drug"/>
         <Class IRI="#Treatment"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#DrugMonitor"/>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugMonitor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#Medication"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugMonitorOutput"/>
+        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugMonitorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#BooleanObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#DrugMonitorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#DrugMonitor"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#Medication"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#EnvironmentalProperty"/>
         <Class abbreviatedIRI="ssn:Property"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#HearthRateOutput"/>
+        <Class IRI="#Humidity"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumidityObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#HumiditySensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#Humidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumidityObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#HumiditySensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumiditySensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumiditySensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#Humidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumiditySensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HumiditySensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#RelativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Medication"/>
+        <Class abbreviatedIRI="ssn:Property"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_Index"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_IndexObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_IndexObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#NO_SensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_IndexObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#NO_Index"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_IndexObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#NO_Sensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_Sensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_Sensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#NO_Index"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_SensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#NO_SensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidity"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidityObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#OutdoorHumiditySensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#OutdoorHumidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidityObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#OutdoorHumiditySensor"/>
+        </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorHumiditySensor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#OutdoorHumiditySensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#OutdoorHumidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#OutdoorHumiditySensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#OutdoorTermometer"/>
+        <Class IRI="#OutdoorHumiditySensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#RelativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperature"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#OutdoorTemperatureSensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#OutdoorTemperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#OutdoorTemperatureSensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureSensor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#OutdoorTermometerOutput"/>
+        <Class IRI="#OutdoorTemperatureSensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#OutdoorTemperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureSensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#PedometerOutput"/>
-        <Class abbreviatedIRI="ssn:SensorOutput"/>
+        <Class IRI="#OutdoorTemperatureSensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#PhysicalProperty"/>
@@ -333,12 +745,55 @@
         <Class abbreviatedIRI="ssn:Property"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#PollenLevel"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#PollenLevelSensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#PollenLevel"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#PollenLevelSensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#PollenLevelSensor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#PollenLevelSensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#PollenLevel"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#PollenLevelSensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#PollenLevelSensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QualitativeObservationValue"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#QualitativeObservationValue"/>
@@ -349,20 +804,59 @@
         <Class abbreviatedIRI="ssn:ObservationValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Scale"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class IRI="#RelativeObservationValue"/>
+        <Class abbreviatedIRI="ssn:ObservationValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#ScaleOutput"/>
-        <Class abbreviatedIRI="ssn:SensorOutput"/>
+        <Class IRI="#SleepDisorder"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SleepMonitor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#SleepMonitor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#SleepDisorder"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#SleepMonitorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepMonitorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#BooleanObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#SleepMonitorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#SleepDisorder"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#SleepMonitor"/>
+        </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomObservation"/>
@@ -378,13 +872,27 @@
     <SubClassOf>
         <Class IRI="#SymptomObservation"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class abbreviatedIRI="asthma:Symptoms"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomObservation"/>
+        <ObjectExactCardinality cardinality="1">
             <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
             <Class IRI="#SymptomsMonitor"/>
-        </ObjectAllValuesFrom>
+        </ObjectExactCardinality>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitor"/>
         <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomsMonitor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class abbreviatedIRI="asthma:Symptoms"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitorOutput"/>
@@ -405,60 +913,159 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Temperature"/>
+        <Class IRI="#EnvironmentalProperty"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureObservation"/>
+        <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#TemperatureSensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#Temperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#TemperatureSensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureSensor"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureSensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#Temperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureSensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TemperatureSensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#kHealthPlatform"/>
         <Class abbreviatedIRI="ssn:Platform"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
-        <Class abbreviatedIRI="asthma:AsthmaRelared_PhysicalProperty"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
     </SubClassOf>
     <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#CO_Index"/>
         <NamedIndividual IRI="#CO_index"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#NO_Index"/>
         <NamedIndividual IRI="#NO_index"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#BooleanObservationValue"/>
-        <NamedIndividual IRI="#No"/>
+        <Class IRI="#SymptomsMonitor"/>
+        <NamedIndividual IRI="#Subject5App"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#BooleanObservationValue"/>
-        <NamedIndividual IRI="#Yes"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#AQI"/>
         <NamedIndividual IRI="#air_quality_index"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Medication"/>
+        <NamedIndividual IRI="#albuterol"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="asthma:Breathlessness"/>
+        <NamedIndividual IRI="#breathlessness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="asthma:Chest_Tightness"/>
+        <NamedIndividual IRI="#chest_tightness"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="asthma:Cough"/>
+        <NamedIndividual IRI="#cough"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#EnvironmentalProperty"/>
         <NamedIndividual IRI="#dust_level"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="asthma:Exacerbation"/>
+        <NamedIndividual IRI="#exacerbation"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Humidity"/>
+        <NamedIndividual IRI="#humidity"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#EnvironmentalProperty"/>
         <NamedIndividual IRI="#mold_level"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#OutdoorHumidity"/>
         <NamedIndividual IRI="#outdoor_humidity"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#OutdoorTemperature"/>
         <NamedIndividual IRI="#outdoor_temperature"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#PollenLevel"/>
         <NamedIndividual IRI="#pollen_level"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#SleepDisorder"/>
+        <NamedIndividual IRI="#sleep"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#PhysicalProperty"/>
         <NamedIndividual IRI="#steps"/>
     </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Temperature"/>
+        <NamedIndividual IRI="#temperature"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class abbreviatedIRI="asthma:Wheezing"/>
+        <NamedIndividual IRI="#wheezing"/>
+    </ClassAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#hasBoleanValue"/>
+        <ObjectProperty IRI="#hasQualitativeValue"/>
+    </SubObjectPropertyOf>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasBoleanValue"/>
+        <Class IRI="#BooleanObservationValue"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasQualitativeValue"/>
+        <Class IRI="#QualitativeObservationValue"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasQuantitativeValue"/>
+        <Class IRI="#QuantitativeObservationValue"/>
+    </ObjectPropertyDomain>
 </Ontology>
 
 
 
-<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
 
