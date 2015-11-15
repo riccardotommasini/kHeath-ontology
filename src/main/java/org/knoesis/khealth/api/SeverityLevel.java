@@ -27,9 +27,9 @@ public class SeverityLevel {
 			+ "PREFIX k: <http://www.knoesis.org/kheath/>";
 
 	public static void main(String[] args) {
-		intermittentAsthmaCheck();
+		// intermittentAsthmaCheck();
 		mildPersistentAsthmaCheck();
-		severePersistentAsthmaCheck();
+		// severePersistentAsthmaCheck();
 	}
 
 	public static void intermittentAsthmaCheck() {
@@ -52,21 +52,32 @@ public class SeverityLevel {
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) = 0)}}";
 
-		Model symptomModel = Symptoms.query(
-				DateTime.parse("2015-06-21T00:00:00"), 7);
-		Model sleepModel = SleepDisorder.query(
-				DateTime.parse("2015-06-21T00:00:00"), 7);
+		Model symptomModel = Symptoms.query();
+		Model sleepModel = SleepDisorder.query();
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());
 
 		Model model = new ModelCom(u);
 
 		System.out.println("-----Debug------");
+
+		System.out.println("symptomModel");
+
 		Query query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
-		ResultSet results = QueryExecutionFactory.create(query, model)
+		ResultSet results = QueryExecutionFactory.create(query, symptomModel)
 				.execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 
+		System.out.println("sleepModel");
+
+		query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
+		results = QueryExecutionFactory.create(query, sleepModel).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+
+		System.out.println("Union");
+		query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
+		results = QueryExecutionFactory.create(query, model).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
 		System.out.println(intermittentAsthma);
 
 		System.out.println("-----Debug End------");
@@ -85,7 +96,7 @@ public class SeverityLevel {
 
 		String levelInstance = "k:\\/severity\\/" + timestamp + "\\/1";
 
-		String intermittentAsthma = prefixes
+		String queryString = prefixes
 				+ "CONSTRUCT { "
 				+ "?p a :Patient; asthma:hasSeveryLevel "
 				+ levelInstance
@@ -97,28 +108,40 @@ public class SeverityLevel {
 				+ "WHERE { ?p asthma:hasSleepDisorder ?s . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) <= 2) } "
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
-				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) > 2)}}";
+				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 2)}}";
 
-		Model symptomModel = Symptoms.query(
-				DateTime.parse("2015-06-21T00:00:00"), 7);
+		Model symptomModel = Symptoms.query(DateTime.parse("2015-06-21T00:00:00"), 2);
 		Model sleepModel = SleepDisorder.query(
-				DateTime.parse("2015-06-21T00:00:00"), 1);
+				DateTime.parse("2015-06-21T00:00:00"), 2);
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());
 
 		Model model = new ModelCom(u);
 
 		System.out.println("-----Debug------");
+
+		System.out.println("symptomModel");
+
 		Query query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
-		ResultSet results = QueryExecutionFactory.create(query, model)
+		ResultSet results = QueryExecutionFactory.create(query, symptomModel)
 				.execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 
-		System.out.println(intermittentAsthma);
+		System.out.println("sleepModel");
+
+		query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
+		results = QueryExecutionFactory.create(query, sleepModel).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+
+		System.out.println("Union");
+		query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
+		results = QueryExecutionFactory.create(query, model).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+		System.out.println(queryString);
 
 		System.out.println("-----Debug End------");
 
-		query = QueryFactory.create(intermittentAsthma);
+		query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 		Iterator<Triple> execConstructTriples = qexec.execConstructTriples();
 		while (execConstructTriples.hasNext()) {
@@ -147,9 +170,9 @@ public class SeverityLevel {
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 0)}}";
 
 		Model symptomModel = Symptoms.query(
-				DateTime.parse("2015-06-21T00:00:00"), 7);
+				DateTime.parse("2015-06-21T00:00:00"), 2);
 		Model sleepModel = SleepDisorder.query(
-				DateTime.parse("2015-06-21T00:00:00"), 30);
+				DateTime.parse("2015-06-21T00:00:00"), 2);
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());
 

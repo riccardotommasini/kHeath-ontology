@@ -32,8 +32,8 @@ public class SleepDisorder {
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
+		System.err.println(queryString);
 
-		System.out.println(queryString);
 		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
 				KHealthUtils.ontop_endpoint, queryString);
 		// ResultSet res = sparqlService.execSelect();
@@ -74,8 +74,7 @@ public class SleepDisorder {
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
-
-		System.out.println(queryString);
+		System.err.println(queryString);
 		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
 				KHealthUtils.ontop_endpoint, queryString);
 		// ResultSet res = sparqlService.execSelect();

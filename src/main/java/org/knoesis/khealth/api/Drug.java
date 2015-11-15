@@ -7,7 +7,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class Symptoms {
+public class Drug {
 
 	public static Model query() {
 
@@ -25,14 +25,14 @@ public class Symptoms {
 				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?symptom ."
 				+ "?instant time:xsdDateTime ?time ."
 				+ "?symptom a asthma:Symptom . " + "?res ssn:hasValue ?val . "
-				+ "?val :hasObservationValue ?qv . "
+				+ "?val :hasObservationValue ?qv ."
 				+ "FILTER (?time > \"2015-06-19T00:00:00\"^^xsd:dateTime ) "
 				+ "FILTER (?time < \"2015-06-21T00:00:00\"^^xsd:dateTime) "
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
-		System.err.println(queryString);
 
+		System.out.println(queryString);
 		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
 				KHealthUtils.ontop_endpoint, queryString);
 		// ResultSet res = sparqlService.execSelect();
@@ -66,13 +66,14 @@ public class Symptoms {
 				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?symptom ."
 				+ "?instant time:xsdDateTime ?time ."
 				+ "?symptom a asthma:Symptom . " + "?res ssn:hasValue ?val . "
-				+ "?val :hasObservationValue ?qv . "
+				+ "?val :hasObservationValue ?qv ."
 				+ "FILTER (?time > \""+d.minusDays(previous).toString(KHealthUtils.fmt)+"\"^^xsd:dateTime ) "
 				+ "FILTER (?time < \""+d.toString(KHealthUtils.fmt)+"\"^^xsd:dateTime) "
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
-		System.err.println(queryString);
+
+		System.out.println(queryString);
 		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
 				KHealthUtils.ontop_endpoint, queryString);
 		// ResultSet res = sparqlService.execSelect();
