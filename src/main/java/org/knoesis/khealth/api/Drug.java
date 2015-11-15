@@ -11,7 +11,7 @@ public class Drug {
 
 	public static Model query() {
 
-		String prefixes = "PREFIX : <http://www.knoesis.org/kheath#> "
+		String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 				+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 				+ "PREFIX r: <http://knoesis.org/ric#> "
@@ -52,7 +52,7 @@ public class Drug {
 	}
 	
 	public static Model query(DateTime d, int previous) {
-		String prefixes = "PREFIX : <http://www.knoesis.org/kheath#> "
+		String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 				+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 				+ "PREFIX r: <http://knoesis.org/ric#> "
