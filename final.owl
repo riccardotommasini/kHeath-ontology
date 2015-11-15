@@ -11,10 +11,10 @@
 
 <Ontology xmlns="http://www.w3.org/2002/07/owl#"
      xml:base="http://www.knoesis.org/kheath"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.knoesis.org/kheath">
     <Prefix name="" IRI="http://www.knoesis.org/kheath#"/>
     <Prefix name="k" IRI="http://www.knoesis.org/kheath/"/>
@@ -23,8 +23,10 @@
     <Prefix name="ssn" IRI="http://purl.oclc.org/NET/ssnx/ssn#"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="time" IRI="http://www.w3.org/2006/time#"/>
     <Prefix name="asthma" IRI="http://www.knoesis.org/khealth/asthma#"/>
     <Import>http://purl.oclc.org/NET/ssnx/ssn</Import>
+    <Import>http://www.w3.org/2006/time</Import>
     <Declaration>
         <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
     </Declaration>
@@ -47,28 +49,28 @@
         <Class abbreviatedIRI="asthma:Exacerbation"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:Mild_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:IntermittentAsthma"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:Moderate_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:MildPersistentAsthma"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:ModeratePersistentAsthma"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:Severe_Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:PersistentAsthma"/>
     </Declaration>
     <Declaration>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:SleepDisorder"/>
+    </Declaration>
+    <Declaration>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </Declaration>
     <Declaration>
         <Class abbreviatedIRI="asthma:Wheezing"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
     </Declaration>
     <Declaration>
         <Class IRI="#AQI"/>
@@ -81,6 +83,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="#AQI_Sensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AsthmaTreatment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#AsthmaTrigger"/>
     </Declaration>
     <Declaration>
         <Class IRI="#BooleanObservationValue"/>
@@ -96,12 +104,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="#CO_SensorOutput"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#ControlLevel"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Drug"/>
     </Declaration>
     <Declaration>
         <Class IRI="#DrugMonitor"/>
@@ -128,7 +130,7 @@
         <Class IRI="#HumiditySensorOutput"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Medication"/>
+        <Class IRI="#MildPersistentAsthmaTreatement"/>
     </Declaration>
     <Declaration>
         <Class IRI="#NO_Index"/>
@@ -167,6 +169,9 @@
         <Class IRI="#OutdoorTemperatureSensorOutput"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Patient"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#PhysicalProperty"/>
     </Declaration>
     <Declaration>
@@ -194,7 +199,7 @@
         <Class IRI="#RelativeObservationValue"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#SleepDisorder"/>
+        <Class IRI="#SeverePersistentAsthmaTreatement"/>
     </Declaration>
     <Declaration>
         <Class IRI="#SleepMonitor"/>
@@ -227,34 +232,82 @@
         <Class IRI="#TemperatureSensorOutput"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#Treatment"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#Trigger"/>
-    </Declaration>
-    <Declaration>
         <Class IRI="#kHealthPlatform"/>
     </Declaration>
     <Declaration>
-        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
+        <Class IRI="/asthma#Albuterol"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasBoleanValue"/>
+        <Class IRI="/asthma#AsthmaControlLevel"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasQualitativeValue"/>
+        <Class IRI="/asthma#Drug"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasQuantitativeValue"/>
+        <Class IRI="/asthma#IntermittentAsthmaTreatment"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasRelativeValue"/>
+        <Class IRI="/asthma#Medication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/asthma#NotWellControlledAsthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/asthma#PoorlyControlledAsthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/asthma#WellControlledAsthma"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/asthma/#ModeratePersistentAsthmaTreatement"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="asthma:hasSleepDisorder"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty abbreviatedIRI="asthma:hasSymptom"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/asthma#hasControlLevel"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/asthma#severityAssociatedTreatement"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="asthma:severityDiagnosisTime"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty abbreviatedIRI="asthma:symptomDiagnosisTime"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasBoleanValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasObservationValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasQualitativeValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasQuantitativeValue"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#hasRelativeValue"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#CO_index"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#NO_index"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Severity1"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Subject5App"/>
@@ -266,19 +319,16 @@
         <NamedIndividual IRI="#albuterol"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#breathlessness"/>
+        <NamedIndividual IRI="#control1"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#chest_tightness"/>
+        <NamedIndividual IRI="#control2"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#cough"/>
+        <NamedIndividual IRI="#date1"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#dust_level"/>
-    </Declaration>
-    <Declaration>
-        <NamedIndividual IRI="#exacerbation"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#humidity"/>
@@ -287,10 +337,19 @@
         <NamedIndividual IRI="#mold_level"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#observation1"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#outdoor_humidity"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#outdoor_temperature"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#patient1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#patient2"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#pollen_level"/>
@@ -305,7 +364,10 @@
         <NamedIndividual IRI="#temperature"/>
     </Declaration>
     <Declaration>
-        <NamedIndividual IRI="#wheezing"/>
+        <NamedIndividual IRI="#treatement1"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#treatement2"/>
     </Declaration>
     <EquivalentClasses>
         <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
@@ -315,57 +377,53 @@
         <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
         <Class IRI="#PhysicalProperty"/>
     </EquivalentClasses>
-    <EquivalentClasses>
-        <Class IRI="#DrugObservation"/>
-        <Class IRI="#Treatment"/>
-    </EquivalentClasses>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Breathlessness"/>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Chest_Tightness"/>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Cough"/>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Exacerbation"/>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </SubClassOf>
     <SubClassOf>
-        <Class abbreviatedIRI="asthma:Mild_Persistent_Asthma"/>
-        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:IntermittentAsthma"/>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
     </SubClassOf>
     <SubClassOf>
-        <Class abbreviatedIRI="asthma:Moderate_Persistent_Asthma"/>
-        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:MildPersistentAsthma"/>
+        <Class abbreviatedIRI="asthma:PersistentAsthma"/>
     </SubClassOf>
     <SubClassOf>
-        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
-        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
+        <Class abbreviatedIRI="asthma:ModeratePersistentAsthma"/>
+        <Class abbreviatedIRI="asthma:PersistentAsthma"/>
     </SubClassOf>
     <SubClassOf>
-        <Class abbreviatedIRI="asthma:Severe_Persistent_Asthma"/>
-        <Class abbreviatedIRI="asthma:Persistent_Asthma"/>
+        <Class abbreviatedIRI="asthma:PersistentAsthma"/>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
     </SubClassOf>
     <SubClassOf>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
+        <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+        <Class abbreviatedIRI="asthma:PersistentAsthma"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:SleepDisorder"/>
+        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class abbreviatedIRI="asthma:Symptom"/>
         <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
     </SubClassOf>
     <SubClassOf>
         <Class abbreviatedIRI="asthma:Wheezing"/>
-        <Class abbreviatedIRI="asthma:Symptoms"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
-        <Class abbreviatedIRI="ssn:SensorOutput"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#AQI"/>
@@ -474,23 +532,19 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Drug"/>
-        <Class IRI="#Treatment"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#DrugMonitor"/>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DrugMonitor"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observes"/>
-            <Class IRI="#Medication"/>
+            <Class IRI="/asthma#Medication"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DrugMonitorOutput"/>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DrugMonitorOutput"/>
@@ -502,6 +556,13 @@
     <SubClassOf>
         <Class IRI="#DrugObservation"/>
         <Class abbreviatedIRI="ssn:Observation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DrugObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+            <Class IRI="#Patient"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#DrugObservation"/>
@@ -521,7 +582,7 @@
         <Class IRI="#DrugObservation"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
-            <Class IRI="#Medication"/>
+            <Class IRI="/asthma#Medication"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -580,8 +641,8 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#Medication"/>
-        <Class abbreviatedIRI="ssn:Property"/>
+        <Class IRI="#MildPersistentAsthmaTreatement"/>
+        <Class IRI="#AsthmaTreatment"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#NO_Index"/>
@@ -737,6 +798,10 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Patient"/>
+        <Class abbreviatedIRI="ssn:FeatureOfInterest"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#PhysicalProperty"/>
         <Class abbreviatedIRI="ssn:Property"/>
     </SubClassOf>
@@ -808,8 +873,15 @@
         <Class abbreviatedIRI="ssn:ObservationValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#SleepDisorder"/>
-        <Class abbreviatedIRI="asthma:AsthmaRelatedPhysiologicalDisorder"/>
+        <Class IRI="#SeverePersistentAsthmaTreatement"/>
+        <Class IRI="#AsthmaTreatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SeverePersistentAsthmaTreatement"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty IRI="/asthma#severityAssociatedTreatement"/>
+            <Class IRI="#SeverePersistentAsthmaTreatement"/>
+        </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SleepMonitor"/>
@@ -819,7 +891,7 @@
         <Class IRI="#SleepMonitor"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observes"/>
-            <Class IRI="#SleepDisorder"/>
+            <Class abbreviatedIRI="asthma:SleepDisorder"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -840,6 +912,13 @@
     <SubClassOf>
         <Class IRI="#SleepObservation"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+            <Class IRI="#Patient"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SleepObservation"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
             <Class IRI="#SleepMonitorOutput"/>
         </ObjectAllValuesFrom>
@@ -848,7 +927,7 @@
         <Class IRI="#SleepObservation"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
-            <Class IRI="#SleepDisorder"/>
+            <Class abbreviatedIRI="asthma:SleepDisorder"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -865,6 +944,13 @@
     <SubClassOf>
         <Class IRI="#SymptomObservation"/>
         <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+            <Class IRI="#Patient"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#SymptomObservation"/>
+        <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
             <Class IRI="#SymptomsMonitorOutput"/>
         </ObjectAllValuesFrom>
@@ -873,7 +959,7 @@
         <Class IRI="#SymptomObservation"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
-            <Class abbreviatedIRI="asthma:Symptoms"/>
+            <Class abbreviatedIRI="asthma:Symptom"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -885,18 +971,18 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitor"/>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionnaire"/>
+        <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitor"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observes"/>
-            <Class abbreviatedIRI="asthma:Symptoms"/>
+            <Class abbreviatedIRI="asthma:Symptom"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitorOutput"/>
-        <Class IRI="http://www.knoesis.org/khealth/sensors#InAppQuestionaireOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#SymptomsMonitorOutput"/>
@@ -968,8 +1054,36 @@
         <Class abbreviatedIRI="ssn:Platform"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/Intermittent_Asthma"/>
-        <Class abbreviatedIRI="asthma:AsthmaRelated_PhysicalProperty"/>
+        <Class IRI="/asthma#Albuterol"/>
+        <Class IRI="/asthma#Drug"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#Drug"/>
+        <Class IRI="/asthma#Medication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#IntermittentAsthmaTreatment"/>
+        <Class IRI="#AsthmaTreatment"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#Medication"/>
+        <Class abbreviatedIRI="ssn:Property"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#NotWellControlledAsthma"/>
+        <Class IRI="/asthma#AsthmaControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#PoorlyControlledAsthma"/>
+        <Class IRI="/asthma#AsthmaControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma#WellControlledAsthma"/>
+        <Class IRI="/asthma#AsthmaControlLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/asthma/#ModeratePersistentAsthmaTreatement"/>
+        <Class IRI="#AsthmaTreatment"/>
     </SubClassOf>
     <ClassAssertion>
         <Class IRI="#CO_Index"/>
@@ -980,6 +1094,10 @@
         <NamedIndividual IRI="#NO_index"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+        <NamedIndividual IRI="#Severity1"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#SymptomsMonitor"/>
         <NamedIndividual IRI="#Subject5App"/>
     </ClassAssertion>
@@ -988,28 +1106,16 @@
         <NamedIndividual IRI="#air_quality_index"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Medication"/>
+        <Class IRI="/asthma#Medication"/>
         <NamedIndividual IRI="#albuterol"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class abbreviatedIRI="asthma:Breathlessness"/>
-        <NamedIndividual IRI="#breathlessness"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class abbreviatedIRI="asthma:Chest_Tightness"/>
-        <NamedIndividual IRI="#chest_tightness"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class abbreviatedIRI="asthma:Cough"/>
-        <NamedIndividual IRI="#cough"/>
+        <Class abbreviatedIRI="time:Instant"/>
+        <NamedIndividual IRI="#date1"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#EnvironmentalProperty"/>
         <NamedIndividual IRI="#dust_level"/>
-    </ClassAssertion>
-    <ClassAssertion>
-        <Class abbreviatedIRI="asthma:Exacerbation"/>
-        <NamedIndividual IRI="#exacerbation"/>
     </ClassAssertion>
     <ClassAssertion>
         <Class IRI="#Humidity"/>
@@ -1020,6 +1126,10 @@
         <NamedIndividual IRI="#mold_level"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#SymptomObservation"/>
+        <NamedIndividual IRI="#observation1"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#OutdoorHumidity"/>
         <NamedIndividual IRI="#outdoor_humidity"/>
     </ClassAssertion>
@@ -1028,11 +1138,19 @@
         <NamedIndividual IRI="#outdoor_temperature"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#Patient"/>
+        <NamedIndividual IRI="#patient1"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Patient"/>
+        <NamedIndividual IRI="#patient2"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#PollenLevel"/>
         <NamedIndividual IRI="#pollen_level"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#SleepDisorder"/>
+        <Class abbreviatedIRI="asthma:SleepDisorder"/>
         <NamedIndividual IRI="#sleep"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -1044,28 +1162,430 @@
         <NamedIndividual IRI="#temperature"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class abbreviatedIRI="asthma:Wheezing"/>
-        <NamedIndividual IRI="#wheezing"/>
+        <Class IRI="#SeverePersistentAsthmaTreatement"/>
+        <NamedIndividual IRI="#treatement1"/>
     </ClassAssertion>
-    <SubObjectPropertyOf>
-        <ObjectProperty IRI="#hasBoleanValue"/>
-        <ObjectProperty IRI="#hasQualitativeValue"/>
-    </SubObjectPropertyOf>
+    <ClassAssertion>
+        <Class IRI="/asthma/#ModeratePersistentAsthmaTreatement"/>
+        <NamedIndividual IRI="#treatement2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma#severityAssociatedTreatement"/>
+        <NamedIndividual IRI="#Severity1"/>
+        <NamedIndividual IRI="#treatement1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty abbreviatedIRI="ssn:observationResultTime"/>
+        <NamedIndividual IRI="#observation1"/>
+        <NamedIndividual IRI="#date1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+        <NamedIndividual IRI="#patient1"/>
+        <NamedIndividual IRI="#treatement1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma#hasControlLevel"/>
+        <NamedIndividual IRI="#patient1"/>
+        <NamedIndividual IRI="#control1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+        <NamedIndividual IRI="#patient1"/>
+        <NamedIndividual IRI="#Severity1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+        <NamedIndividual IRI="#patient2"/>
+        <NamedIndividual IRI="#treatement2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma#hasControlLevel"/>
+        <NamedIndividual IRI="#patient2"/>
+        <NamedIndividual IRI="#control2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+        <NamedIndividual IRI="#patient2"/>
+        <NamedIndividual IRI="#Severity1"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty abbreviatedIRI="time:inXSDDateTime"/>
+        <NamedIndividual IRI="#date1"/>
+        <Literal datatypeIRI="&xsd;dateTime">2015-06-19T16:48:54.0</Literal>
+    </DataPropertyAssertion>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasBoleanValue"/>
-        <Class IRI="#BooleanObservationValue"/>
+        <ObjectProperty abbreviatedIRI="asthma:hasSleepDisorder"/>
+        <Class IRI="#Patient"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasQualitativeValue"/>
-        <Class IRI="#QualitativeObservationValue"/>
+        <ObjectProperty abbreviatedIRI="asthma:hasSymptom"/>
+        <Class IRI="#Patient"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasQuantitativeValue"/>
-        <Class IRI="#QuantitativeObservationValue"/>
+        <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+        <Class IRI="#Patient"/>
     </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/asthma#hasControlLevel"/>
+        <Class IRI="#Patient"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/asthma#severityAssociatedTreatement"/>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+        <Class IRI="#Patient"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="asthma:hasSleepDisorder"/>
+        <Class abbreviatedIRI="asthma:SleepDisorder"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty abbreviatedIRI="asthma:hasSymptom"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+        <Class IRI="#AsthmaTreatment"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/asthma#hasControlLevel"/>
+        <Class IRI="/asthma#AsthmaControlLevel"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/asthma#severityAssociatedTreatement"/>
+        <Class IRI="#AsthmaTreatment"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasBoleanValue"/>
+        <DataProperty IRI="#hasQuantitativeValue"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasQualitativeValue"/>
+        <DataProperty IRI="#hasObservationValue"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasQuantitativeValue"/>
+        <DataProperty IRI="#hasObservationValue"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#hasRelativeValue"/>
+        <DataProperty IRI="#hasObservationValue"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="asthma:severityDiagnosisTime"/>
+        <Class abbreviatedIRI="asthma:Asthma_Severity"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty abbreviatedIRI="asthma:symptomDiagnosisTime"/>
+        <Class abbreviatedIRI="asthma:Symptom"/>
+    </DataPropertyDomain>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:IntermittentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="/asthma#IntermittentAsthmaTreatment"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#WellControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:MildPersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:IntermittentAsthma"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#PoorlyControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:ModeratePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:IntermittentAsthma"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#PoorlyControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:MildPersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#MildPersistentAsthmaTreatement"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#WellControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:ModeratePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="/asthma/#ModeratePersistentAsthmaTreatement"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#WellControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#MildPersistentAsthmaTreatement"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#PoorlyControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="#SeverePersistentAsthmaTreatement"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#WellControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="/asthma#IntermittentAsthmaTreatment"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#PoorlyControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
+    <DLSafeRule>
+        <Body>
+            <ClassAtom>
+                <Class abbreviatedIRI="asthma:SeverePersistentAsthma"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ClassAtom>
+            <ClassAtom>
+                <Class IRI="/asthma/#ModeratePersistentAsthmaTreatement"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ClassAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasControlLevel"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma/#hasAsthmaSeverity"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#s"/>
+            </ObjectPropertyAtom>
+            <ObjectPropertyAtom>
+                <ObjectProperty IRI="/asthma#hasAppliedTreatment"/>
+                <Variable IRI="urn:swrl#p"/>
+                <Variable IRI="urn:swrl#t"/>
+            </ObjectPropertyAtom>
+        </Body>
+        <Head>
+            <ClassAtom>
+                <Class IRI="/asthma#PoorlyControlledAsthma"/>
+                <Variable IRI="urn:swrl#c"/>
+            </ClassAtom>
+        </Head>
+    </DLSafeRule>
 </Ontology>
 
 
 
-<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
 

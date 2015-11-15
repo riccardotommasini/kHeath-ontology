@@ -6,6 +6,7 @@ rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
 ssn:		http://purl.oclc.org/NET/ssnx/ssn#
 xsd:		http://www.w3.org/2001/XMLSchema#
 rdfs:		http://www.w3.org/2000/01/rdf-schema#
+time:		http://www.w3.org/2006/time#
 asthma:		http://www.knoesis.org/khealth/asthma#
 
 [SourceDeclaration]
@@ -22,12 +23,6 @@ source		SELECT PID
 			FROM asthmadb.Answers
 			WHERE QID IN (7,8,9);
 
-mappingId	SymptomObservation
-target		k:observation/{QID}/{PID}/{DATE} a :SymptomObservation ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime {DATE}^^xsd:dateTime . 
-source		SELECT QID, PID, DATE
-			FROM asthmadb.Answers
-			WHERE QID IN (7, 8, 9);
-
 mappingId	SymptomObservationValue
 target		k:observation/value/{QID}/{PID}/{DATE} a :BooleanObservationValue ; :hasQualitativeValue {Value}^^xsd:boolean . 
 source		SELECT PID, QID, DATE
@@ -40,26 +35,26 @@ source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID IN (7, 8, 9);
 
-mappingId	SymptomObservedProperty (Cough)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :cough . 
+mappingId	Symptom (Cough)
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:symptom/{QID}/{PID}/{DATE} . k:symptom/{QID}/{PID}/{DATE} a asthma:Cough . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID = 7;
 
-mappingId	SymptomObservedProperty (Wheeze)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :wheezing . 
+mappingId	Symptom (Wheeze)
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:symptom/{QID}/{PID}/{DATE} . k:symptom/{QID}/{PID}/{DATE} a asthma:Wheezing . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID = 8;
 
-mappingId	SymptomObservedProperty (Chest Tightness)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :chest_tightness . 
+mappingId	Symptom (Chest Tightness)
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:symptom/{QID}/{PID}/{DATE} . k:symptom/{QID}/{PID}/{DATE} a asthma:Chest_Tightness . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID = 9;
 
-mappingId	SymptomObservedProperty (Breathlessness)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :breathlessness . 
+mappingId	Symptom (Breathlessness)
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:symptom/{QID}/{PID}/{DATE} . k:symptom/{QID}/{PID}/{DATE} a asthma:Breathlessness . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID = 10;
@@ -71,7 +66,7 @@ source		SELECT PID
 			WHERE QID IN (2,14);
 
 mappingId	DrugObservation
-target		k:observation/{QID}/{PID}/{DATE} a :DrugObservation ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime {DATE}^^xsd:dateTime . 
+target		k:observation/{QID}/{PID}/{DATE} a :DrugObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime {DATE}^^xsd:dateTime . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID IN (2,14);
@@ -89,7 +84,7 @@ source		SELECT QID, PID, DATE
 			WHERE QID IN (2,14);
 
 mappingId	DrugObservedProperty (Albuterol)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :albuterol . 
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty asthma:Albuterol . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID IN (2,14);
@@ -143,7 +138,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 4;
 
 mappingId	PollenLevelSensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :PollenLevelSensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :PollenLevelSensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 4;
@@ -173,7 +168,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 0;
 
 mappingId	NO_SensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :NO_SensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :NO_SensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 0;
@@ -203,7 +198,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 1;
 
 mappingId	CO_SensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :CO_SensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :CO_SensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 1;
@@ -233,7 +228,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 2;
 
 mappingId	HumiditySensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :HumiditySensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :HumiditySensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 2;
@@ -263,7 +258,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 7;
 
 mappingId	OutdoorHumiditySensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :OutdoorHumiditySensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :OutdoorHumiditySensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 7;
@@ -293,7 +288,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 3;
 
 mappingId	TemperatureSensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :TemperatureSensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :TemperatureSensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 3;
@@ -323,7 +318,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 6;
 
 mappingId	OutdoorTemperatureSensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :OutdoorTemperatureSensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :OutdoorTemperatureSensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 6;
@@ -353,7 +348,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 5;
 
 mappingId	AQISensorOutput
-target		k:observation/output/{FID}/{PID}/{DATE} a :AQISensorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
+target		k:observation/output/{FID}/{PID}/{DATE} a :AQISensorOutput ; ssn:hasValue k:observation/value/{FID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{FID} . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 5;
@@ -363,5 +358,40 @@ target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty :air_quality_index
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 5;
+
+mappingId	SymptomObservation
+target		k:observation/{QID}/{PID}/{DATE} a :SymptomObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
+source		SELECT QID, PID, DATE
+			FROM asthmadb.Answers
+			WHERE QID IN (7,8,9,10);
+
+mappingId	SleepObservation
+target		k:observation/{QID}/{PID}/{DATE} a :SleepObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
+source		SELECT QID, PID, DATE
+			FROM asthmadb.Answers
+			WHERE QID = 1;
+
+mappingId	SleepObservationValue
+target		k:observation/value/{QID}/{PID}/{DATE} a :BooleanObservationValue ; :hasQualitativeValue {Value}^^xsd:boolean . 
+source		SELECT PID, QID, DATE
+			FROM asthmadb.Answers
+			WHERE QID = 1;
+
+mappingId	SleepMonitorOutput
+target		k:observation/output/{QID}/{PID}/{DATE} a :SleepMonitorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{PID} . 
+source		SELECT QID, PID, DATE
+			FROM asthmadb.Answers
+			WHERE QID = 1;
+
+mappingId	SleepDisorder
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:symptom/{QID}/{PID}/{DATE} . k:symptom/{QID}/{PID}/{DATE} a asthma:SleepDisorder . 
+source		SELECT QID, PID, DATE
+			FROM asthmadb.Answers
+			WHERE QID = 7;
+
+mappingId	Patient
+target		k:/{PID} a :Patient . 
+source		SELECT PID
+			FROM asthmadb.Patients
 ]]
 
