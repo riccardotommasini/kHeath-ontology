@@ -1,0 +1,23 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#Eclipse
+.classpath
+.project
+.settings/
+
+
+#Maven
+target
+
+#data
+*.csv
+*.DS_Store
+
