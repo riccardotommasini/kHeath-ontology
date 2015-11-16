@@ -19,15 +19,18 @@ public class Drug {
 				+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
 				+ "PREFIX time: <http://www.w3.org/2006/time#> ";
 		String queryString = prefixes
-				+ "CONSTRUCT { ?p a :Patient ; asthma:hasSymptom ?symptom . "
-				+ "?symptom a asthma:Symptom ; :symptomDiagnosisTime ?time . } "
+				+ "CONSTRUCT { ?p a :Patient ; asthma:hasAppliedMedication ?drug ; asthma:hasControlLevel ?cl . "
+				+ "?cl a ?clt . "
+				+ "?drug a asthma:Drug ; :hasAssociatedTime ?time . } "
 				+ "WHERE { "
-				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?symptom ."
+				+ "?p asthma:hasControlLevel ?cl ."
+				+ "?cl a ?clt . "
+				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?drug ."
 				+ "?instant time:xsdDateTime ?time ."
-				+ "?symptom a asthma:Symptom . " + "?res ssn:hasValue ?val . "
+				+ "?drug a asthma:Drug . " + "?res ssn:hasValue ?val . "
 				+ "?val :hasObservationValue ?qv ."
-				+ "FILTER (?time > \"2015-06-19T00:00:00\"^^xsd:dateTime ) "
-				+ "FILTER (?time < \"2015-06-21T00:00:00\"^^xsd:dateTime) "
+				+ "FILTER (?time > \"2015-06-16T00:00:00\"^^xsd:dateTime ) "
+				+ "FILTER (?time < \"2015-06-27T00:00:00\"^^xsd:dateTime) "
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
@@ -42,16 +45,17 @@ public class Drug {
 		return m;
 
 	}
-	
-	public static Model daylyQuery(DateTime d){
-		return query(d,1);
+
+	public static Model daylyQuery(DateTime d) {
+		return query(d, 1);
 	}
-	
-	public static Model weeklyQuery(DateTime d){
-		return query(d,7);
+
+	public static Model weeklyQuery(DateTime d) {
+		return query(d, 7);
 	}
-	
+
 	public static Model query(DateTime d, int previous) {
+
 		String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 				+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
@@ -59,16 +63,23 @@ public class Drug {
 				+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
 				+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
 				+ "PREFIX time: <http://www.w3.org/2006/time#> ";
+		String from = d.minusDays(previous).toString(KHealthUtils.fmt);
+		String to = d.toString(KHealthUtils.fmt);
+		System.out.println("From " + from);
+		System.out.println("To " + to);
 		String queryString = prefixes
-				+ "CONSTRUCT { ?p a :Patient ; asthma:hasSymptom ?symptom . "
-				+ "?symptom a asthma:Symptom ; :symptomDiagnosisTime ?time . } "
+				+ "CONSTRUCT { ?p a :Patient ; asthma:hasAppliedMedication ?drug ; asthma:hasControlLevel ?cl . "
+				+ "?cl a ?clt . "
+				+ "?drug a asthma:Drug ; :hasAssociatedTime ?time . } "
 				+ "WHERE { "
-				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?symptom ."
+				+ "?p asthma:hasControlLevel ?cl ."
+				+ "?cl a ?clt . "
+				+ "?obs ssn:featureOfInterest ?p ; ssn:observationResultTime ?instant ; ssn:observationResult ?res ; ssn:observedProperty ?drug ."
 				+ "?instant time:xsdDateTime ?time ."
-				+ "?symptom a asthma:Symptom . " + "?res ssn:hasValue ?val . "
-				+ "?val :hasObservationValue ?qv ."
-				+ "FILTER (?time > \""+d.minusDays(previous).toString(KHealthUtils.fmt)+"\"^^xsd:dateTime ) "
-				+ "FILTER (?time < \""+d.toString(KHealthUtils.fmt)+"\"^^xsd:dateTime) "
+				+ "?drug a asthma:Drug . " + "?res ssn:hasValue ?val . "
+				+ "?val :hasObservationValue ?qv ." + "FILTER (?time > \""
+				+ from + "\"^^xsd:dateTime ) " + "FILTER (?time < \"" + to
+				+ "\"^^xsd:dateTime) "
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
 		// create and initialize repo
@@ -81,5 +92,6 @@ public class Drug {
 		Model m = sparqlService.execConstruct();
 		sparqlService.close();
 		return m;
+
 	}
 }
