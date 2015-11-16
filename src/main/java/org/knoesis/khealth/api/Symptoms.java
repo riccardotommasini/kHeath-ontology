@@ -11,14 +11,7 @@ public class Symptoms {
 
 	public static Model query() {
 
-		String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
-				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-				+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-				+ "PREFIX r: <http://knoesis.org/ric#> "
-				+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-				+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-				+ "PREFIX time: <http://www.w3.org/2006/time#> ";
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { ?p a :Patient ; asthma:hasSymptom ?symptom . "
 				+ "?symptom a asthma:Symptom ; :symptomDiagnosisTime ?time . } "
 				+ "WHERE { "

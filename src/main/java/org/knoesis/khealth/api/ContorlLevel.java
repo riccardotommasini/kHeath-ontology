@@ -1,6 +1,6 @@
 package org.knoesis.khealth.api;
 
-import arq.query;
+import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -12,13 +12,6 @@ import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 public class ContorlLevel {
-	private static final String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
-			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-			+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-			+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-			+ "PREFIX k: <http://www.knoesis.org/khealth/>"
-			+ "PREFIX owl: <http://www.w3.org/2002/07/owl#>";
 
 	public static void main(String[] args) {
 
@@ -76,8 +69,8 @@ public class ContorlLevel {
 				+ "?t a " + treatement + " . " + "?s a " + severity + " ."
 				+ "}";
 
-		String askQuery = prefixes + " ASK " + queryString;
-		String selectQuery = prefixes + " SELECT * " + queryString;
+		String askQuery = KHealthUtils.prefixes + " ASK " + queryString;
+		String selectQuery = KHealthUtils.prefixes + " SELECT * " + queryString;
 		Query query;
 		QueryExecution qexec;
 		ResultSet results;

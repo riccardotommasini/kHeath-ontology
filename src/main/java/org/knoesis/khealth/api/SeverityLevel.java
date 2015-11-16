@@ -16,18 +16,25 @@ import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 
 public class SeverityLevel {
 
-	private static final String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
-			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-			+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-			+ "PREFIX r: <http://knoesis.org/ric#> "
-			+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-			+ "PREFIX k: <http://www.knoesis.org/khealth/>";
-
 	public static void main(String[] args) {
-		//intermittentAsthmaCheck();
-		//mildPersistentAsthmaCheck();
+		intermittentAsthmaCheck();
+		mildPersistentAsthmaCheck();
 		severePersistentAsthmaCheck();
+	}
+
+	private static Model query(String queryString, Model model) {
+		Query query;
+		System.err.println(queryString);
+
+		query = QueryFactory.create(queryString);
+		QueryExecution qexec = QueryExecutionFactory.create(query, model);
+		Model resultModel = qexec.execConstruct();
+		StmtIterator listStatements = resultModel.listStatements();
+		while (listStatements.hasNext()) {
+			System.out.println(listStatements.next());
+		}
+
+		return resultModel;
 	}
 
 	public static Model intermittentAsthmaCheck() {
@@ -36,7 +43,7 @@ public class SeverityLevel {
 
 		String levelInstance = "k:severity\\/" + timestamp + "\\/0";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
 				+ "?p a :Patient; asthma:hasSeveryLevel "
 				+ levelInstance
@@ -80,17 +87,7 @@ public class SeverityLevel {
 
 		System.out.println("-----Debug End------");
 
-		System.err.println(queryString);
-
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
-
-		return resultModel;
+		return query(queryString, model);
 	}
 
 	public static Model mildPersistentAsthmaCheck() {
@@ -99,7 +96,7 @@ public class SeverityLevel {
 
 		String levelInstance = "k:severity\\/" + timestamp + "\\/1";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
 				+ "?p a :Patient; asthma:hasSeveryLevel  "
 				+ levelInstance
@@ -145,17 +142,7 @@ public class SeverityLevel {
 
 		System.out.println("-----Debug End------");
 
-		System.err.println(queryString);
-
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
-
-		return resultModel;
+		return query(queryString, model);
 	}
 
 	public static Model severePersistentAsthmaCheck() {
@@ -164,7 +151,7 @@ public class SeverityLevel {
 
 		String levelInstance = "k:severity\\/" + timestamp + "\\/3";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
 				+ "?p a :Patient; asthma:hasSeveryLevel "
 				+ levelInstance
@@ -197,17 +184,7 @@ public class SeverityLevel {
 
 		System.out.println("-----Debug End------");
 
-		System.err.println(queryString);
-
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
-
-		return resultModel;
+		return query(queryString, model);
 	}
 
 }

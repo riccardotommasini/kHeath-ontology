@@ -14,37 +14,11 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class TreatementLevel {
 
-	private static final String prefixes = "PREFIX : <http://www.knoesis.org/khealth#> "
-			+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-			+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-			+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-			+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-			+ "PREFIX k: <http://www.knoesis.org/khealth/>";
 
 	public static void main(String[] args) {
 		insermittentAsthmaCheck();
 		mildPersistentAsthmaCheck();
 		severePersistentAsthmaCheck();
-	}
-
-	@SuppressWarnings("unused")
-	public static void demo() {
-
-		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
-
-		Model model = Drug.query();
-
-		System.out.println("-----Debug------");
-
-		System.out.println("model");
-
-		Query query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
-		ResultSet results = QueryExecutionFactory.create(query, model)
-				.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-
-		System.out.println("-----Debug End------");
-
 	}
 
 	public static Model insermittentAsthmaCheck() {
@@ -54,7 +28,7 @@ public class TreatementLevel {
 				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) < 2) }";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
 				+ "?p asthma:hasAppliedTreatment ?g . "
 				+ "?g a asthma:IntermittentAsthmaTreatement ; asthma:treatmentApplicationTime \""
@@ -69,7 +43,7 @@ public class TreatementLevel {
 
 		System.out.println("symptomModel");
 
-		Query query = QueryFactory.create(prefixes + " SELECT ?p "
+		Query query = QueryFactory.create(KHealthUtils.prefixes + " SELECT ?p "
 				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) >= 0) ");
 		ResultSet results = QueryExecutionFactory.create(query, model)
@@ -77,17 +51,8 @@ public class TreatementLevel {
 		ResultSetFormatter.out(System.out, results, query);
 
 		System.out.println("-----Debug End------");
-		System.err.println(queryString);
 
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
-
-		return resultModel;
+		return query(queryString, model);
 	}
 
 	public static Model mildPersistentAsthmaCheck() {
@@ -97,7 +62,7 @@ public class TreatementLevel {
 				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) >= 2) }";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
 				+ "?p asthma:hasAppliedTreatment ?g . "
 				+ "?g a asthma:MildPersistentAsthmaTreatement ; asthma:treatmentApplicationTime \""
@@ -112,7 +77,7 @@ public class TreatementLevel {
 
 		System.out.println("symptomModel");
 
-		Query query = QueryFactory.create(prefixes + " SELECT ?p "
+		Query query = QueryFactory.create(KHealthUtils.prefixes + " SELECT ?p "
 				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) >= 0) ");
 		ResultSet results = QueryExecutionFactory.create(query, model)
@@ -122,13 +87,7 @@ public class TreatementLevel {
 		System.out.println("-----Debug End------");
 		System.err.println(queryString);
 
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
+		Model resultModel = query(queryString, model);
 
 		return resultModel;
 	}
@@ -138,15 +97,14 @@ public class TreatementLevel {
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 		String inner = " SELECT ?p (count(?day) as ?days) " + "WHERE { "
 				+ "?p asthma:hasAppliedMedication ?d . "
-				+ "?d :hasAssociatedTime ?time "
-				+ ". "
+				+ "?d :hasAssociatedTime ?time " + ". "
 				+ "bind( day(xsd:dateTime(?time)) as ?day ) . } "
 				+ "GROUP BY ?p ?day HAVING(count(distinct ?d) > 0) ";
 
 		String outer = " SELECT ?p " + "WHERE {" + inner + "}"
 				+ " GROUP BY ?p " + "HAVING (count(?days) > 0)";
 
-		String queryString = prefixes
+		String queryString = KHealthUtils.prefixes
 				+ " CONSTRUCT { "
 				+ "?p asthma:hasAppliedTreatment ?g ."
 				+ " ?g a asthma:SeverePersistentAsthmaTreatement ; asthma:treatmentApplicationTime \""
@@ -161,7 +119,7 @@ public class TreatementLevel {
 
 		System.out.println("INNER ");
 
-		Query query = QueryFactory.create(prefixes + inner);
+		Query query = QueryFactory.create(KHealthUtils.prefixes + inner);
 
 		ResultSet results = QueryExecutionFactory.create(query, model)
 				.execSelect();
@@ -169,14 +127,22 @@ public class TreatementLevel {
 
 		System.out.println("Outer ");
 
-		query = QueryFactory.create(prefixes + outer);
+		query = QueryFactory.create(KHealthUtils.prefixes + outer);
 
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 
 		System.out.println("-----Debug End------");
+
+		return query(queryString, model);
+
+	}
+
+	private static Model query(String queryString, Model model) {
+
 		System.err.println(queryString);
 
+		Query query;
 		query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
 		Model resultModel = qexec.execConstruct();
@@ -184,7 +150,6 @@ public class TreatementLevel {
 		while (listStatements.hasNext()) {
 			System.out.println(listStatements.next());
 		}
-
 		return resultModel;
 	}
 }
