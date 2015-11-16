@@ -1,11 +1,8 @@
 package org.knoesis.khealth.api;
 
-import java.util.Iterator;
-
 import org.joda.time.DateTime;
 import org.knoesis.khealth.utils.KHealthUtils;
 
-import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.graph.compose.Union;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
@@ -14,6 +11,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 
 public class SeverityLevel {
@@ -27,18 +25,18 @@ public class SeverityLevel {
 			+ "PREFIX k: <http://www.knoesis.org/khealth/>";
 
 	public static void main(String[] args) {
-		// intermittentAsthmaCheck();
-		mildPersistentAsthmaCheck();
-		// severePersistentAsthmaCheck();
+		//intermittentAsthmaCheck();
+		//mildPersistentAsthmaCheck();
+		severePersistentAsthmaCheck();
 	}
 
-	public static void intermittentAsthmaCheck() {
+	public static Model intermittentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:\\/severity\\/" + timestamp + "\\/0";
+		String levelInstance = "k:severity\\/" + timestamp + "\\/0";
 
-		String intermittentAsthma = prefixes
+		String queryString = prefixes
 				+ "CONSTRUCT { "
 				+ "?p a :Patient; asthma:hasSeveryLevel "
 				+ levelInstance
@@ -78,27 +76,32 @@ public class SeverityLevel {
 		query = QueryFactory.create("SELECT ?s ?p ?o WHERE {?s ?p ?o}");
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
-		System.out.println(intermittentAsthma);
+		System.out.println(queryString);
 
 		System.out.println("-----Debug End------");
 
-		query = QueryFactory.create(intermittentAsthma);
+		System.err.println(queryString);
+
+		query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Iterator<Triple> execConstructTriples = qexec.execConstructTriples();
-		while (execConstructTriples.hasNext()) {
-			System.out.println(execConstructTriples.next());
+		Model resultModel = qexec.execConstruct();
+		StmtIterator listStatements = resultModel.listStatements();
+		while (listStatements.hasNext()) {
+			System.out.println(listStatements.next());
 		}
+
+		return resultModel;
 	}
 
-	public static void mildPersistentAsthmaCheck() {
+	public static Model mildPersistentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:\\/severity\\/" + timestamp + "\\/1";
+		String levelInstance = "k:severity\\/" + timestamp + "\\/1";
 
 		String queryString = prefixes
 				+ "CONSTRUCT { "
-				+ "?p a :Patient; asthma:hasSeveryLevel "
+				+ "?p a :Patient; asthma:hasSeveryLevel  "
 				+ levelInstance
 				+ " ."
 				+ levelInstance
@@ -110,7 +113,8 @@ public class SeverityLevel {
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 2)}}";
 
-		Model symptomModel = Symptoms.query(DateTime.parse("2015-06-21T00:00:00"), 2);
+		Model symptomModel = Symptoms.query(
+				DateTime.parse("2015-06-21T00:00:00"), 2);
 		Model sleepModel = SleepDisorder.query(
 				DateTime.parse("2015-06-21T00:00:00"), 2);
 
@@ -141,19 +145,24 @@ public class SeverityLevel {
 
 		System.out.println("-----Debug End------");
 
+		System.err.println(queryString);
+
 		query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Iterator<Triple> execConstructTriples = qexec.execConstructTriples();
-		while (execConstructTriples.hasNext()) {
-			System.out.println(execConstructTriples.next());
+		Model resultModel = qexec.execConstruct();
+		StmtIterator listStatements = resultModel.listStatements();
+		while (listStatements.hasNext()) {
+			System.out.println(listStatements.next());
 		}
+
+		return resultModel;
 	}
 
-	public static void severePersistentAsthmaCheck() {
+	public static Model severePersistentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:\\/severity\\/" + timestamp + "\\/3";
+		String levelInstance = "k:severity\\/" + timestamp + "\\/3";
 
 		String queryString = prefixes
 				+ "CONSTRUCT { "
@@ -165,7 +174,7 @@ public class SeverityLevel {
 				+ timestamp + "\"^^xsd:dateTime . } " + "WHERE { "
 				+ "?p a :Patient . " + "{ " + "SELECT ?p "
 				+ "WHERE { ?p asthma:hasSleepDisorder ?s . } "
-				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) >= 4) } "
+				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) >= 0) } "
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 0)}}";
 
@@ -188,12 +197,17 @@ public class SeverityLevel {
 
 		System.out.println("-----Debug End------");
 
+		System.err.println(queryString);
+
 		query = QueryFactory.create(queryString);
 		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Iterator<Triple> execConstructTriples = qexec.execConstructTriples();
-		while (execConstructTriples.hasNext()) {
-			System.out.println(execConstructTriples.next());
+		Model resultModel = qexec.execConstruct();
+		StmtIterator listStatements = resultModel.listStatements();
+		while (listStatements.hasNext()) {
+			System.out.println(listStatements.next());
 		}
+
+		return resultModel;
 	}
 
 }
