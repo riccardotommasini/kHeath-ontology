@@ -21,6 +21,7 @@ public abstract class SensorEndpoint {
 
 	public  Model retrieveModel(String fromString, String toString,
 			String observationType) {
+		
 		String queryString = "PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
 				+ "PREFIX : <http://www.knoesis.org/khealth#> "
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
