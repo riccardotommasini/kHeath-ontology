@@ -36,7 +36,7 @@ public abstract class SensorEndpoint {
 				+ "?res ssn:hasValue ?val . "
 				+ "?val :hasObservationValue ?qv . "
 				+ "?instant time:xsdDateTime ?time . "
-				+ "}"
+				+ "} "
 				+ "WHERE {"
 				+ "?obs a "
 				+ observationType

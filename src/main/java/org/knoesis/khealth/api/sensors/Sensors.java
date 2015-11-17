@@ -1,7 +1,6 @@
 package org.knoesis.khealth.api.sensors;
 
 import org.joda.time.DateTime;
-import org.knoesis.khealth.utils.KHealthUtils;
 
 public class Sensors {
 	public static void main(String[] args) {
@@ -11,7 +10,9 @@ public class Sensors {
 		
 		System.err.println("TEMPERATURE");
 
-
+		PollenLevel p = new PollenLevel();
+		p.query(DateTime.parse("2014-10-13T00:00:00"), DateTime.parse("2014-10-27T00:00:00"));
+		
 //		KHealthUtils.debug(temp.queryIndoor(
 //				DateTime.parse("2014-08-22T00:00:00"),
 //				DateTime.parse("2014-09-15T00:00:00")));
@@ -23,9 +24,9 @@ public class Sensors {
 //		KHealthUtils.debug(humidity.queryIndoor(
 //				DateTime.parse("2014-08-22T00:00:00"),
 //				DateTime.parse("2014-10-27T00:00:00")));
-		KHealthUtils.debug(humidity.queryOutdoor(
-				DateTime.parse("2014-09-22T00:00:00"),
-				DateTime.parse("2014-10-27T00:00:00")));
+//		KHealthUtils.debug(humidity.queryOutdoor(
+//				DateTime.parse("2014-09-22T00:00:00"),
+//				DateTime.parse("2014-10-27T00:00:00")));
 
 
 		// System.err.println("AIR POLLUTION");
