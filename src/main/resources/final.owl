@@ -69,6 +69,9 @@
         <Class IRI="#EnvironmentalProperty"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#HighPollenLevel"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#Humidity"/>
     </Declaration>
     <Declaration>
@@ -106,6 +109,12 @@
     </Declaration>
     <Declaration>
         <Class IRI="#Location"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#LowPollenLevel"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MediumPollenLevel"/>
     </Declaration>
     <Declaration>
         <Class IRI="#NO_Index"/>
@@ -434,6 +443,21 @@
         <Class IRI="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#AirPollution"/>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#HighPollenLevel"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PollenLevel"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasQualitativeValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+                    <FacetRestriction facet="&xsd;minInclusive">
+                        <Literal datatypeIRI="&xsd;nonNegativeInteger">2</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#Humidity"/>
         <Class IRI="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity"/>
     </EquivalentClasses>
@@ -445,6 +469,45 @@
                 <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
                 <Class IRI="#Indoor"/>
             </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#LowPollenLevel"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PollenLevel"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasQualitativeValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+                    <FacetRestriction facet="&xsd;maxInclusive">
+                        <Literal datatypeIRI="&xsd;nonNegativeInteger">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#MediumPollenLevel"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#PollenLevel"/>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasQualitativeValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+                    <FacetRestriction facet="&xsd;minExclusive">
+                        <Literal datatypeIRI="&xsd;nonNegativeInteger">0</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
+            <DataSomeValuesFrom>
+                <DataProperty IRI="#hasQualitativeValue"/>
+                <DatatypeRestriction>
+                    <Datatype abbreviatedIRI="xsd:nonNegativeInteger"/>
+                    <FacetRestriction facet="&xsd;maxExclusive">
+                        <Literal datatypeIRI="&xsd;nonNegativeInteger">2</Literal>
+                    </FacetRestriction>
+                </DatatypeRestriction>
+            </DataSomeValuesFrom>
         </ObjectIntersectionOf>
     </EquivalentClasses>
     <EquivalentClasses>
@@ -650,6 +713,10 @@
         <Class abbreviatedIRI="ssn:Property"/>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#HighPollenLevel"/>
+        <Class IRI="#PollenLevel"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#Humidity"/>
         <Class IRI="#EnvironmentalProperty"/>
     </SubClassOf>
@@ -803,6 +870,14 @@
     <SubClassOf>
         <Class IRI="#Location"/>
         <Class abbreviatedIRI="ssn:FeatureOfInterest"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#LowPollenLevel"/>
+        <Class IRI="#PollenLevel"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MediumPollenLevel"/>
+        <Class IRI="#PollenLevel"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#MildPersistentAsthma"/>
