@@ -127,7 +127,7 @@ public class Temperature extends SensorEndpoint {
 						+ "{ "
 						+ inner
 						+ "}"
-						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#temp-in_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
+						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#temp-out_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
 						+ "}");
 
 		return QueryExecutionFactory.create(query, m).execConstruct();
