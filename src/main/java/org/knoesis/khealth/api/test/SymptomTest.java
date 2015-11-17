@@ -1,6 +1,6 @@
 package org.knoesis.khealth.api.test;
 
-import org.knoesis.khealth.api.Symptoms;
+import org.knoesis.khealth.api.questions.Symptoms;
 
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
