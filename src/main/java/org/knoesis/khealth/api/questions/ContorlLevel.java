@@ -1,4 +1,4 @@
-package org.knoesis.khealth.api;
+package org.knoesis.khealth.api.questions;
 
 import org.knoesis.khealth.utils.KHealthUtils;
 
@@ -15,46 +15,35 @@ public class ContorlLevel {
 
 	public static void main(String[] args) {
 
-		 Model intermittentSeverity = SeverityLevel.intermittentAsthmaCheck();
-		 Model intermittentTreatement = TreatementLevel
-		 .insermittentAsthmaCheck();
+		Model intermittentSeverity = SeverityLevel.intermittentAsthmaCheck();
+		Model intermittentTreatement = TreatementLevel
+				.insermittentAsthmaCheck();
 
-		 Model mildSeverity = SeverityLevel.mildPersistentAsthmaCheck();
-		 Model mildTreatement = TreatementLevel.mildPersistentAsthmaCheck();
+		Model mildSeverity = SeverityLevel.mildPersistentAsthmaCheck();
+		Model mildTreatement = TreatementLevel.mildPersistentAsthmaCheck();
 
 		Model severeSeverity = SeverityLevel.severePersistentAsthmaCheck();
 		Model severeTreatement = TreatementLevel.severePersistentAsthmaCheck();
 
 		System.err.println("severeSeverity");
-
-		Query sel = QueryFactory.create("SELECT * WHERE {?s ?p ?o}");
-		ResultSet res = QueryExecutionFactory.create(sel, severeSeverity)
-				.execSelect();
-		ResultSetFormatter.out(System.out, res, sel);
-
+		KHealthUtils.debug(intermittentSeverity);
 		System.err.println("severeTreatement");
-
-		res = QueryExecutionFactory.create(sel, severeTreatement).execSelect();
-		ResultSetFormatter.out(System.out, res, sel);
-
-		System.err.println("UNION");
+		KHealthUtils.debug(intermittentTreatement);
 
 		System.out.println("Models complete");
 
 		System.err.println("INTERMITTENT");
-
 		query(ModelFactory.createDefaultModel().union(intermittentTreatement)
 				.union(intermittentSeverity),
 				"asthma:IntermittentAsthmaTreatement",
 				"asthma:IntermittentAsthma");
+
 		System.err.println("MILD");
-
 		query(ModelFactory.createDefaultModel().union(mildTreatement)
-				.union(mildSeverity),
-				"asthma:MildPersistentAsthmaTreatement",
+				.union(mildSeverity), "asthma:MildPersistentAsthmaTreatement",
 				"asthma:MildPersistentAsthma");
-		System.err.println("SEVERE");
 
+		System.err.println("SEVERE");
 		query(ModelFactory.createDefaultModel().union(severeTreatement)
 				.union(severeSeverity),
 				"asthma:SeverePersistentAsthmaTreatement",

@@ -1,4 +1,4 @@
-package org.knoesis.khealth.api;
+package org.knoesis.khealth.api.questions;
 
 import org.joda.time.DateTime;
 import org.knoesis.khealth.utils.KHealthUtils;

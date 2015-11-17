@@ -1,4 +1,4 @@
-package org.knoesis.khealth.api;
+package org.knoesis.khealth.api.questions;
 
 import org.joda.time.DateTime;
 import org.knoesis.khealth.utils.KHealthUtils;
@@ -18,8 +18,8 @@ public class SeverityLevel {
 
 	public static void main(String[] args) {
 		intermittentAsthmaCheck();
-		mildPersistentAsthmaCheck();
-		severePersistentAsthmaCheck();
+		// mildPersistentAsthmaCheck();
+		// severePersistentAsthmaCheck();
 	}
 
 	private static Model query(String queryString, Model model) {
@@ -41,21 +41,22 @@ public class SeverityLevel {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:severity\\/" + timestamp + "\\/0";
+		String inner2 = " SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
+				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) = 0) ";
+		
+		String inner1 = " SELECT ?p "
+				+ "WHERE { ?p asthma:hasSleepDisorder ?s . } "
+				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) < 2) ";
+				
 
 		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
-				+ "?p a :Patient; asthma:hasSeveryLevel "
-				+ levelInstance
-				+ " ."
-				+ levelInstance
-				+ " a asthma:IntermittenAsthma ; asthma:severityDiagnosisTime \""
+				+ "?p a :Patient; asthma:hasSeveryLevel ?g ."
+				+ "?g a asthma:IntermittenAsthma ; asthma:severityDiagnosisTime \""
 				+ timestamp + "\"^^xsd:dateTime . } " + "WHERE { "
-				+ "?p a :Patient . " + "{ " + "SELECT ?p "
-				+ "WHERE { ?p asthma:hasSleepDisorder ?s . } "
-				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) < 2) } "
-				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
-				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) = 0)}}";
+				+ "?p a :Patient . "
+				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"severity"
+				+ timestamp + "\")) as ?g ) ." + "{ " + inner1 + "} { " + inner2 + "}}";;
 
 		Model symptomModel = Symptoms.query();
 		Model sleepModel = SleepDisorder.query();
@@ -84,6 +85,20 @@ public class SeverityLevel {
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 		System.out.println(queryString);
+		
+		System.out.println("innerer");
+		query = QueryFactory.create(KHealthUtils.prefixes + inner2);
+		results = QueryExecutionFactory.create(query, model).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+		System.out.println(queryString);
+
+		
+		System.out.println("inner");
+		query = QueryFactory.create(KHealthUtils.prefixes + inner1);
+		results = QueryExecutionFactory.create(query, model).execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+		System.out.println(queryString);
+
 
 		System.out.println("-----Debug End------");
 
