@@ -101,13 +101,12 @@ PREFIX asthma: <http://www.knoesis.org/khealth/asthma#>
 
 SELECT *
 WHERE {
-?obs a :TemperatureObservation ; ssn:observationResult ?res ; ssn:observationResultTime ?instant .
-?res ssn:hasValue ?val . 
-?val :hasObservationValue ?qv .
+?obs a :OutdoorTemperatureObservation ; ssn:observationResult  ?res ; ssn:observationResultTime ?instant .
 ?instant time:xsdDateTime ?time .
-FILTER (?time > "2014-10-17T00:00:00"^^xsd:dateTime)
-FILTER (?time < "2014-10-22T00:00:00"^^xsd:dateTime)
+?res ssn:hasValue ?val . 
 
+FILTER (?time >= "2014-08-22T00:00:00"^^xsd:dateTime) 
+FILTER (?time < "2014-10-27T00:00:00"^^xsd:dateTime) 
 }
 ]]
 [QueryItem="eclipse"]

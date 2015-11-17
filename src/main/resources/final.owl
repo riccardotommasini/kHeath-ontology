@@ -78,7 +78,34 @@
         <Class IRI="#HumiditySensor"/>
     </Declaration>
     <Declaration>
-        <Class IRI="#HumiditySensorOutput"/>
+        <Class IRI="#Indoor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorHumidity"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorHumidityObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorHumiditySensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorHumiditySensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorTemperature"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorTemperatureObservation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorTemperatureSensor"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IndoorTemperatureSensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Location"/>
     </Declaration>
     <Declaration>
         <Class IRI="#NO_Index"/>
@@ -91,6 +118,9 @@
     </Declaration>
     <Declaration>
         <Class IRI="#NO_SensorOutput"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Outdoor"/>
     </Declaration>
     <Declaration>
         <Class IRI="#OutdoorHumidity"/>
@@ -172,9 +202,6 @@
     </Declaration>
     <Declaration>
         <Class IRI="#TemperatureSensor"/>
-    </Declaration>
-    <Declaration>
-        <Class IRI="#TemperatureSensorOutput"/>
     </Declaration>
     <Declaration>
         <Class IRI="#kHealthPlatform"/>
@@ -411,6 +438,26 @@
         <Class IRI="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity"/>
     </EquivalentClasses>
     <EquivalentClasses>
+        <Class IRI="#IndoorHumidity"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Humidity"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Indoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OutdoorHumidity"/>
+        <ObjectIntersectionOf>
+            <Class IRI="#Humidity"/>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Outdoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </EquivalentClasses>
+    <EquivalentClasses>
         <Class IRI="#PhysicalProperty"/>
         <Class IRI="/asthma#AsthmaRelatedPhysicalProperty"/>
     </EquivalentClasses>
@@ -611,27 +658,6 @@
         <Class abbreviatedIRI="ssn:Observation"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#HumidityObservation"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
-            <Class IRI="#HumiditySensorOutput"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#HumidityObservation"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
-            <Class IRI="#Humidity"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#HumidityObservation"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
-            <Class IRI="#HumiditySensor"/>
-        </ObjectExactCardinality>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#HumiditySensor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
@@ -643,15 +669,140 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#HumiditySensorOutput"/>
+        <Class IRI="#Indoor"/>
+        <Class IRI="#Location"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidity"/>
+        <Class IRI="#Humidity"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidityObservation"/>
+        <Class IRI="#HumidityObservation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidityObservation"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Patient"/>
+            </ObjectSomeValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Indoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#IndoorHumiditySensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidityObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#IndoorHumidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumidityObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#IndoorHumiditySensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumiditySensor"/>
+        <Class IRI="#HumiditySensor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumiditySensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#IndoorHumidity"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorHumiditySensorOutput"/>
         <Class abbreviatedIRI="ssn:SensorOutput"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#HumiditySensorOutput"/>
+        <Class IRI="#IndoorHumiditySensorOutput"/>
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
             <Class IRI="#RelativeObservationValue"/>
         </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperature"/>
+        <Class IRI="#Temperature"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureObservation"/>
+        <Class IRI="#TemperatureObservation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureObservation"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Patient"/>
+            </ObjectSomeValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Indoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
+            <Class IRI="#IndoorTemperatureSensorOutput"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureObservation"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
+            <Class IRI="#IndoorTemperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureObservation"/>
+        <ObjectExactCardinality cardinality="1">
+            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
+            <Class IRI="#IndoorTemperatureSensor"/>
+        </ObjectExactCardinality>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureSensor"/>
+        <Class IRI="#TemperatureSensor"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureSensor"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:observes"/>
+            <Class IRI="#IndoorTemperature"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureSensorOutput"/>
+        <Class abbreviatedIRI="ssn:SensorOutput"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IndoorTemperatureSensorOutput"/>
+        <ObjectAllValuesFrom>
+            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
+            <Class IRI="#QuantitativeObservationValue"/>
+        </ObjectAllValuesFrom>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Location"/>
+        <Class abbreviatedIRI="ssn:FeatureOfInterest"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#MildPersistentAsthma"/>
@@ -713,12 +864,29 @@
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
+        <Class IRI="#Outdoor"/>
+        <Class IRI="#Location"/>
+    </SubClassOf>
+    <SubClassOf>
         <Class IRI="#OutdoorHumidity"/>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#Humidity"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorHumidityObservation"/>
-        <Class abbreviatedIRI="ssn:Observation"/>
+        <Class IRI="#HumidityObservation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorHumidityObservation"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Patient"/>
+            </ObjectSomeValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Outdoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorHumidityObservation"/>
@@ -743,7 +911,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorHumiditySensor"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class IRI="#HumiditySensor"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorHumiditySensor"/>
@@ -765,11 +933,24 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorTemperature"/>
-        <Class IRI="#EnvironmentalProperty"/>
+        <Class IRI="#Temperature"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorTemperatureObservation"/>
-        <Class abbreviatedIRI="ssn:Observation"/>
+        <Class IRI="#TemperatureObservation"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OutdoorTemperatureObservation"/>
+        <ObjectIntersectionOf>
+            <ObjectSomeValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Patient"/>
+            </ObjectSomeValuesFrom>
+            <ObjectAllValuesFrom>
+                <ObjectProperty abbreviatedIRI="ssn:featureOfInterest"/>
+                <Class IRI="#Outdoor"/>
+            </ObjectAllValuesFrom>
+        </ObjectIntersectionOf>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorTemperatureObservation"/>
@@ -794,7 +975,7 @@
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorTemperatureSensor"/>
-        <Class abbreviatedIRI="ssn:SensingDevice"/>
+        <Class IRI="#TemperatureSensor"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#OutdoorTemperatureSensor"/>
@@ -1017,27 +1198,6 @@
         <Class abbreviatedIRI="ssn:Observation"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#TemperatureObservation"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty abbreviatedIRI="ssn:observationResult"/>
-            <Class IRI="#TemperatureSensorOutput"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#TemperatureObservation"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty abbreviatedIRI="ssn:observedProperty"/>
-            <Class IRI="#Temperature"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#TemperatureObservation"/>
-        <ObjectExactCardinality cardinality="1">
-            <ObjectProperty abbreviatedIRI="ssn:observedBy"/>
-            <Class IRI="#TemperatureSensor"/>
-        </ObjectExactCardinality>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#TemperatureSensor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
@@ -1046,17 +1206,6 @@
         <ObjectAllValuesFrom>
             <ObjectProperty abbreviatedIRI="ssn:observes"/>
             <Class IRI="#Temperature"/>
-        </ObjectAllValuesFrom>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#TemperatureSensorOutput"/>
-        <Class abbreviatedIRI="ssn:SensorOutput"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#TemperatureSensorOutput"/>
-        <ObjectAllValuesFrom>
-            <ObjectProperty abbreviatedIRI="ssn:hasValue"/>
-            <Class IRI="#QuantitativeObservationValue"/>
         </ObjectAllValuesFrom>
     </SubClassOf>
     <SubClassOf>
@@ -1194,7 +1343,7 @@
         <NamedIndividual IRI="#dust_level"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Humidity"/>
+        <Class IRI="#IndoorHumidity"/>
         <NamedIndividual IRI="#humidity"/>
     </ClassAssertion>
     <ClassAssertion>
@@ -1250,7 +1399,7 @@
         <NamedIndividual IRI="#steps"/>
     </ClassAssertion>
     <ClassAssertion>
-        <Class IRI="#Temperature"/>
+        <Class IRI="#IndoorTemperature"/>
         <NamedIndividual IRI="#temperature"/>
     </ClassAssertion>
     <ObjectPropertyAssertion>
