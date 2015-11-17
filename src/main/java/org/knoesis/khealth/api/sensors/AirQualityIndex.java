@@ -4,61 +4,32 @@ import org.joda.time.DateTime;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class AirQualityIndex {
+public class AirQualityIndex extends SensorEndpoint {
 
-	public static Model daylyQuery(DateTime d) {
-		return query(d, 1);
-	}
+	public Model query(DateTime from, DateTime to) {
 
-	public static Model query(DateTime d, int previous) {
+		String fromString = from.toString(KHealthUtils.fmt);
+		String toString = to.toString(KHealthUtils.fmt);
+		System.out.println("From " + fromString);
+		System.out.println("To " + toString);
 
-		String from = d.minusDays(previous).toString(KHealthUtils.fmt);
-		String to = d.toString(KHealthUtils.fmt);
-		System.out.println("From " + from);
-		System.out.println("To " + to);
+		String observationType = ":AQIObservation";
 
-		String queryString = "PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
-				+ "PREFIX : <http://www.knoesis.org/khealth#> "
-				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-				+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-				+ "PREFIX time: <http://www.w3.org/2006/time#> "
-				+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-				+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-				+ "CONSTRUCT { "
-				+ "?obs a :AQIObservation ; ssn:featureOfInterest ?p ; ssn:observationResult ?res ; ssn:observationResultTime ?instant ."
-				+ "?res ssn:hasValue ?val . "
-				+ "?val :hasObservationValue ?qv . "
-				+ "?instant time:xsdDateTime ?time . "
-				+ "}"
-				+ "WHERE {"
-				+ "?obs a :AQIObservation ; ssn:featureOfInterest ?p ; ssn:observationResult ?res ; ssn:observationResultTime ?instant ."
-				+ "?res ssn:hasValue ?val . "
-				+ "?val :hasObservationValue ?qv . "
-				+ "?instant time:xsdDateTime ?time ."
-				+ "FILTER (?time >= \""
-				+ from
-				+ "\"^^xsd:dateTime) "
-				+ "FILTER (?time <= \""
-				+ to
-				+ "\"^^xsd:dateTime) }";
+		Model m = retrieveModel(fromString, toString, observationType);
+		
+		KHealthUtils.debug(m);
 
-		System.out.println(queryString);
-		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
-				KHealthUtils.ontop_endpoint, queryString);
-		// ResultSet res = sparqlService.execSelect();
-
-		Model m = sparqlService.execConstruct();
-		sparqlService.close();
-		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?aqi_avg) "
+		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?aqi_avg) (max(?time) as ?current)"
 				+ "WHERE { "
-				+ "?obs a :AQIObservation ; ssn:featureOfInterest ?p ; ssn:observationResult ?res ; ssn:observationResultTime ?instant ."
+				+ "?obs a "
+				+ observationType
+				+ " ; ssn:featureOfInterest ?p ; ssn:observationResult ?res ; ssn:observationResultTime ?instant ."
 				+ "?res ssn:hasValue ?val . "
 				+ "?val :hasObservationValue ?qv . "
 				+ "?instant time:xsdDateTime ?time ."
@@ -68,18 +39,6 @@ public class AirQualityIndex {
 				+ "GROUP BY ?p ?year ?month ?day "
 				+ "ORDER BY ?p ?year ?month ?day ";
 
-		Query sel = QueryFactory
-				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
-						+ "PREFIX : <http://www.knoesis.org/khealth#> "
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-						+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-						+ "PREFIX time: <http://www.w3.org/2006/time#> "
-						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ inner);
-		ResultSet res = QueryExecutionFactory.create(sel, m).execSelect();
-		ResultSetFormatter.out(System.out, res, sel);
-
 		Query query = QueryFactory
 				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
 						+ "PREFIX : <http://www.knoesis.org/khealth#> "
@@ -88,14 +47,29 @@ public class AirQualityIndex {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ "CONSTRUCT { ?i "
-						+ " a wea:AirPollution ; wea:hasValue ?aqi_avg ; :hasAssociatedDateTime ?time. }"
+						+ inner);
+		ResultSet r = QueryExecutionFactory.create(query, m).execSelect();
+		ResultSetFormatter.out(System.out, r, query);
+
+		query = QueryFactory
+				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
+						+ "PREFIX : <http://www.knoesis.org/khealth#> "
+						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+						+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
+						+ "PREFIX time: <http://www.w3.org/2006/time#> "
+						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
+						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
+						+ "CONSTRUCT { ?i a wea:AirPollution ; wea:hasValue ?aqi_avg ; :hasAssociatedDateTime ?current. }"
 						+ "WHERE { "
-						+ "?instant time:xsdDateTime ?time  "
-						+ "BIND (URI (CONCAT(STR(:aiq\\/), STR(?year) , STR(?month) ,STR(?day) )) as ?i) { "
-						+ inner + "}}");
+						+ "?instant time:xsdDateTime ?time  . "
+						+ "{ "
+						+ inner
+						+ "}"
+						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#aqi_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
+						+ "}");
 
 		return QueryExecutionFactory.create(query, m).execConstruct();
 
 	}
+
 }
