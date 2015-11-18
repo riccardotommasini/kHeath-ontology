@@ -424,19 +424,19 @@
     </Declaration>
     <EquivalentClasses>
         <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/426656000"/>
-        <Class IRI="#SeverePersistentAsthma"/>
+        <Class IRI="/asthma#SeverePersistentAsthma"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/426979002"/>
-        <Class IRI="#MildPersistentAsthma"/>
+        <Class IRI="/asthma#MildPersistentAsthma"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/427295004"/>
-        <Class IRI="#ModeratePersistentAsthma"/>
+        <Class IRI="/asthma#ModeratePersistentAsthma"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="http://purl.bioontology.org/ontology/SNOMEDCT/427603009"/>
-        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/IntermittentAsthma"/>
+        <Class IRI="/asthma#IntermittentAsthma"/>
     </EquivalentClasses>
     <EquivalentClasses>
         <Class IRI="#AQI"/>
@@ -880,14 +880,6 @@
         <Class IRI="#PollenLevel"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#MildPersistentAsthma"/>
-        <Class IRI="/asthma#AsthmaSeverity"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="#ModeratePersistentAsthma"/>
-        <Class IRI="/asthma#AsthmaSeverity"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#NO_Index"/>
         <Class IRI="#EnvironmentalProperty"/>
     </SubClassOf>
@@ -1146,10 +1138,6 @@
         <Class abbreviatedIRI="ssn:ObservationValue"/>
     </SubClassOf>
     <SubClassOf>
-        <Class IRI="#SeverePersistentAsthma"/>
-        <Class IRI="/asthma#AsthmaSeverity"/>
-    </SubClassOf>
-    <SubClassOf>
         <Class IRI="#SleepMonitor"/>
         <Class abbreviatedIRI="ssn:SensingDevice"/>
     </SubClassOf>
@@ -1384,10 +1372,6 @@
     <SubClassOf>
         <Class IRI="/asthma#Wheezing"/>
         <Class IRI="/asthma#Symptom"/>
-    </SubClassOf>
-    <SubClassOf>
-        <Class IRI="http://www.semanticweb.org/riccardo/ontologies/2015/8/IntermittentAsthma"/>
-        <Class IRI="/asthma#AsthmaSeverity"/>
     </SubClassOf>
     <ClassAssertion>
         <Class IRI="#CO_Index"/>
