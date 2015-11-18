@@ -16,13 +16,7 @@ import com.hp.hpl.jena.rdf.model.impl.ModelCom;
 
 public class SeverityLevel {
 
-	public static void main(String[] args) {
-		intermittentAsthmaCheck();
-		// mildPersistentAsthmaCheck();
-		// severePersistentAsthmaCheck();
-	}
-
-	private static Model query(String queryString, Model model) {
+	private Model query(String queryString, Model model) {
 		Query query;
 		System.err.println(queryString);
 
@@ -37,17 +31,16 @@ public class SeverityLevel {
 		return resultModel;
 	}
 
-	public static Model intermittentAsthmaCheck() {
+	public Model intermittentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
 		String inner2 = " SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) = 0) ";
-		
+
 		String inner1 = " SELECT ?p "
 				+ "WHERE { ?p asthma:hasSleepDisorder ?s . } "
 				+ "GROUP BY (?p) " + "HAVING (count(distinct ?s) < 2) ";
-				
 
 		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
@@ -56,10 +49,13 @@ public class SeverityLevel {
 				+ timestamp + "\"^^xsd:dateTime . } " + "WHERE { "
 				+ "?p a :Patient . "
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"severity"
-				+ timestamp + "\")) as ?g ) ." + "{ " + inner1 + "} { " + inner2 + "}}";;
+				+ timestamp + "\")) as ?g ) ." + "{ " + inner1 + "} { "
+				+ inner2 + "}}";
 
-		Model symptomModel = Symptoms.query();
-		Model sleepModel = SleepDisorder.query();
+		Model symptomModel = new Symptoms().query(
+				DateTime.parse("2015-06-21T00:00:00"), 2);
+		Model sleepModel = new SleepDisorder().query(
+				DateTime.parse("2015-06-21T00:00:00"), 2);
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());
 
@@ -85,27 +81,25 @@ public class SeverityLevel {
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 		System.out.println(queryString);
-		
+
 		System.out.println("innerer");
 		query = QueryFactory.create(KHealthUtils.prefixes + inner2);
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 		System.out.println(queryString);
 
-		
 		System.out.println("inner");
 		query = QueryFactory.create(KHealthUtils.prefixes + inner1);
 		results = QueryExecutionFactory.create(query, model).execSelect();
 		ResultSetFormatter.out(System.out, results, query);
 		System.out.println(queryString);
 
-
 		System.out.println("-----Debug End------");
 
 		return query(queryString, model);
 	}
 
-	public static Model mildPersistentAsthmaCheck() {
+	public Model mildPersistentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
@@ -125,9 +119,9 @@ public class SeverityLevel {
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 2)}}";
 
-		Model symptomModel = Symptoms.query(
+		Model symptomModel = new Symptoms().query(
 				DateTime.parse("2015-06-21T00:00:00"), 2);
-		Model sleepModel = SleepDisorder.query(
+		Model sleepModel = new SleepDisorder().query(
 				DateTime.parse("2015-06-21T00:00:00"), 2);
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());
@@ -160,7 +154,7 @@ public class SeverityLevel {
 		return query(queryString, model);
 	}
 
-	public static Model severePersistentAsthmaCheck() {
+	public Model severePersistentAsthmaCheck() {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
@@ -180,9 +174,9 @@ public class SeverityLevel {
 				+ "{ " + "SELECT ?p " + " WHERE { ?p asthma:hasSymptom ?s . } "
 				+ "GROUP BY (?p) " + " HAVING (count(distinct ?s) >= 0)}}";
 
-		Model symptomModel = Symptoms.query(
+		Model symptomModel = new Symptoms().query(
 				DateTime.parse("2015-06-21T00:00:00"), 2);
-		Model sleepModel = SleepDisorder.query(
+		Model sleepModel = new SleepDisorder().query(
 				DateTime.parse("2015-06-21T00:00:00"), 2);
 
 		Union u = new Union(sleepModel.getGraph(), symptomModel.getGraph());

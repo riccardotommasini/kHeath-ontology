@@ -5,7 +5,7 @@ import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class PollenLevel extends SensorEndpoint {
+public class PollenLevel extends SensorEndpointImpl {
 
 	public Model query(DateTime from, DateTime to) {
 

@@ -1,0 +1,2 @@
+ERROR 1 [2015-11-17 18:02:23,699] [main] org.apache.jena.riot  - {E201} Multiple children of property element
+ERROR 0 [2015-11-17 18:02:59,765] [main] org.apache.jena.riot  - {E201} Multiple children of property element

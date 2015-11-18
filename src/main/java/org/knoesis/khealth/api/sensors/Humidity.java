@@ -10,7 +10,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class Humidity extends SensorEndpoint {
+public class Humidity extends SensorEndpointImpl {
 
 	public static final String outdoor = ":OutdoorHumidityObservation";
 

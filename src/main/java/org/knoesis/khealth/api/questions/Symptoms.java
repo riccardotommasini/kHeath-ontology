@@ -7,21 +7,22 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class Symptoms {
+public class Symptoms implements QuestionEndpoint {
 
-	public static Model daylyQuery(DateTime d) {
+	public Model daylyQuery(DateTime d) {
 		return query(d, 1);
 	}
 
-	public static Model weeklyQuery(DateTime d) {
+	public Model weeklyQuery(DateTime d) {
 		return query(d, 7);
 	}
 
-	public static Model query(DateTime d, int previous) {
-		return query(d, d.minusDays(previous));
+	public Model query(DateTime d, int previous) {
+
+		return query(d.minusDays(previous), d);
 	}
 
-	public static Model query(DateTime from, DateTime to) {
+	public Model query(DateTime from, DateTime to) {
 
 		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { ?p a :Patient ; asthma:hasSymptom ?symptom . "

@@ -7,7 +7,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public abstract class SensorEndpoint {
+public abstract class SensorEndpointImpl {
 
 	public  Model daylyQuery(DateTime d) {
 		return query(d, 1);

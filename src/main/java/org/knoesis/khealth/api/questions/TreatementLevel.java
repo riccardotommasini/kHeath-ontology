@@ -37,7 +37,7 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) ." + "{ " + inner + " }";
 
-		Model model = Drug.query(DateTime.parse("2015-06-27T00:00:00"), 7);
+		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
 
 		System.out.println("-----Debug------");
 
@@ -71,7 +71,8 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) ." + "{ " + inner + " }";
 
-		Model model = Drug.query(DateTime.parse("2015-06-27T00:00:00"), 7);
+		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
+
 
 		System.out.println("-----Debug------");
 
@@ -113,7 +114,7 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) . " + "{" + outer + " }}";
 
-		Model model = Drug.query(DateTime.parse("2015-06-21T00:00:00"), 7);
+		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
 
 		System.out.println("-----Debug------");
 

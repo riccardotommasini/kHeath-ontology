@@ -10,7 +10,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class AirQualityIndex extends SensorEndpoint {
+public class AirQualityIndex extends SensorEndpointImpl {
 
 	public Model query(DateTime from, DateTime to) {
 

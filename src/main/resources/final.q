@@ -131,16 +131,14 @@ FILTER (?time < "2014-10-27T00:00:00"^^xsd:dateTime)
 }
 
 [QueryItem="PollenLevel"]
-PERFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> 
-PERFIX : <http://www.knoesis.org/khealth#> 
-PERFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
-PERFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
-PERFIX time: <http://www.w3.org/2006/time#> 
-PERFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> 
-PERFIX asthma: <http://www.knoesis.org/khealth/asthma#>
+PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> 
+PREFIX : <http://www.knoesis.org/khealth#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX time: <http://www.w3.org/2006/time#> 
+PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> 
+PREFIX asthma: <http://www.knoesis.org/khealth/asthma#>
 
-SELECT ?obs
-WHERE { 
-?obs a :PollenLevelObservation . 
-}
+SELECT *
+WHERE {?obs a :PollenLevelObservation ;  ssn:featureOfInterest ?p ; ssn:observationResult ?res ; ssn:observationResultTime ?instant .?res ssn:hasValue ?val . ?val :hasObservationValue ?qv . ?instant time:xsdDateTime ?time . FILTER (?time >= "2014-10-13T00:00:00"^^xsd:dateTime) FILTER (?time <= "2014-10-27T00:00:00"^^xsd:dateTime) }
 ]]

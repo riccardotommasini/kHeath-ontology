@@ -15,14 +15,16 @@ public class ContorlLevel {
 
 	public static void main(String[] args) {
 
-		Model intermittentSeverity = SeverityLevel.intermittentAsthmaCheck();
+		Model intermittentSeverity = new SeverityLevel()
+				.intermittentAsthmaCheck();
 		Model intermittentTreatement = TreatementLevel
 				.insermittentAsthmaCheck();
 
-		Model mildSeverity = SeverityLevel.mildPersistentAsthmaCheck();
+		Model mildSeverity = new SeverityLevel().mildPersistentAsthmaCheck();
 		Model mildTreatement = TreatementLevel.mildPersistentAsthmaCheck();
 
-		Model severeSeverity = SeverityLevel.severePersistentAsthmaCheck();
+		Model severeSeverity = new SeverityLevel()
+				.severePersistentAsthmaCheck();
 		Model severeTreatement = TreatementLevel.severePersistentAsthmaCheck();
 
 		System.err.println("severeSeverity");

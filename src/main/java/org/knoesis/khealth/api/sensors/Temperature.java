@@ -10,7 +10,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class Temperature extends SensorEndpoint {
+public class Temperature extends SensorEndpointImpl {
 
 	public static final String outdoor = ":OutdoorTemperatureObservation";
 

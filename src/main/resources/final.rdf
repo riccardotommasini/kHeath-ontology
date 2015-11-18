@@ -1,0 +1,2511 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY time "http://www.w3.org/2006/time#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY k "http://www.knoesis.org/khealth/" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY ssn "http://purl.oclc.org/NET/ssnx/ssn#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY asthma "http://www.knoesis.org/khealth/asthma#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY wea "https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/weather/WeatherOntology_1.03.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.knoesis.org/khealth#"
+     xml:base="http://www.knoesis.org/khealth"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:asthma="&k;asthma#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:k="http://www.knoesis.org/khealth/"
+     xmlns:ssn="http://purl.oclc.org/NET/ssnx/ssn#"
+     xmlns:wea="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/weather/WeatherOntology_1.03.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:time="http://www.w3.org/2006/time#">
+    <owl:Ontology rdf:about="http://www.knoesis.org/khealth">
+        <owl:imports rdf:resource="http://purl.oclc.org/NET/ssnx/ssn"/>
+        <owl:imports rdf:resource="http://www.w3.org/2006/time"/>
+        <owl:imports rdf:resource="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#associatedSeverityLevel -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#associatedSeverityLevel">
+        <owl:inverseOf rdf:resource="&k;asthma#associatedTreatementLevel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#associatedTreatementLevel -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#associatedTreatementLevel">
+        <rdfs:domain rdf:resource="&k;asthma#AsthmaSeverity"/>
+        <rdfs:range rdf:resource="&k;asthma#AsthmaTreatment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasAppliedMedication -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasAppliedMedication">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#Medication"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasAppliedTreatment -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasAppliedTreatment">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#AsthmaTreatment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasControlLevel -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasControlLevel">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#AsthmaControlLevel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasSeverityLevel -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasSeverityLevel">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasSleepDisorder -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasSleepDisorder">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#SleepDisorder"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#hasSymptom -->
+
+    <owl:ObjectProperty rdf:about="&k;asthma#hasSymptom">
+        <rdfs:domain rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <rdfs:range rdf:resource="&k;asthma#Symptom"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasAssociatedDateTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasAssociatedDateTime">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasBoleanValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasBoleanValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasQualitativeValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasObservationValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasObservationValue"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasQualitativeValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasQualitativeValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasObservationValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasQuantitativeValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasQuantitativeValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasObservationValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#hasRelativeValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#hasRelativeValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasObservationValue"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#treatmentApplicationTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.knoesis.org/khealth#treatmentApplicationTime">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasAssociatedDateTime"/>
+        <rdfs:domain rdf:resource="&k;asthma#AsthmaTreatment"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#severityDiagnosisTime -->
+
+    <owl:DatatypeProperty rdf:about="&k;asthma#severityDiagnosisTime">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasAssociatedDateTime"/>
+        <rdfs:domain rdf:resource="&k;asthma#AsthmaSeverity"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#symptomDiagnosisTime -->
+
+    <owl:DatatypeProperty rdf:about="&k;asthma#symptomDiagnosisTime">
+        <rdfs:subPropertyOf rdf:resource="http://www.knoesis.org/khealth#hasAssociatedDateTime"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.bioontology.org/ontology/SNOMEDCT/426656000 -->
+
+    <owl:Class rdf:about="http://purl.bioontology.org/ontology/SNOMEDCT/426656000">
+        <owl:equivalentClass rdf:resource="http://www.knoesis.org/khealth#SeverePersistentAsthma"/>
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.bioontology.org/ontology/SNOMEDCT/426979002 -->
+
+    <owl:Class rdf:about="http://purl.bioontology.org/ontology/SNOMEDCT/426979002">
+        <owl:equivalentClass rdf:resource="http://www.knoesis.org/khealth#MildPersistentAsthma"/>
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.bioontology.org/ontology/SNOMEDCT/427295004 -->
+
+    <owl:Class rdf:about="http://purl.bioontology.org/ontology/SNOMEDCT/427295004">
+        <owl:equivalentClass rdf:resource="http://www.knoesis.org/khealth#ModeratePersistentAsthma"/>
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://purl.bioontology.org/ontology/SNOMEDCT/427603009 -->
+
+    <owl:Class rdf:about="http://purl.bioontology.org/ontology/SNOMEDCT/427603009">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/riccardo/ontologies/2015/8/IntermittentAsthma"/>
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#AQI -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#AQI">
+        <owl:equivalentClass rdf:resource="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#AirPollution"/>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#AQIObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#AQIObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#AQISensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#AQI_Sensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#AQI"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#AQISensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#AQISensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QuantitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#AQI_Sensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#AQI_Sensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#AQI"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#BooleanObservationValue -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#BooleanObservationValue">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#QualitativeObservationValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#CO_Index -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#CO_Index">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#CO_IndexObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#CO_IndexObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#CO_Index"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#CO_SensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#CO_Sensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#CO_Sensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#CO_Sensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#CO_Index"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#CO_SensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#CO_SensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QuantitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#DrugMonitor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#DrugMonitor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#Medication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#DrugMonitorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#DrugMonitorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#BooleanObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#DrugObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#DrugObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#DrugMonitorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#Medication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#DrugMonitor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#EnvironmentalProperty -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#EnvironmentalProperty">
+        <rdfs:subClassOf rdf:resource="&ssn;Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#HighPollenLevel -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#HighPollenLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.knoesis.org/khealth#PollenLevel"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.knoesis.org/khealth#hasQualitativeValue"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;nonNegativeInteger"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minInclusive rdf:datatype="&xsd;nonNegativeInteger">2</xsd:minInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Humidity -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Humidity">
+        <owl:equivalentClass rdf:resource="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity"/>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#HumidityObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#HumidityObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#HumiditySensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#HumiditySensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Humidity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Indoor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Indoor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorHumidity -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorHumidity">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.knoesis.org/khealth#Humidity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Indoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Humidity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorHumidityObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorHumidityObservation">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#HumidityObservation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorHumidity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:someValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Indoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#IndoorHumiditySensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorHumiditySensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorHumiditySensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorHumiditySensor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#HumiditySensor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorHumidity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorHumiditySensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorHumiditySensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#RelativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorTemperature -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Temperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorTemperatureObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorTemperatureObservation">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#TemperatureObservation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#IndoorTemperatureSensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorTemperatureSensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:someValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Indoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorTemperatureSensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorTemperatureSensor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#TemperatureSensor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#IndoorTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#IndoorTemperatureSensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#IndoorTemperatureSensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QuantitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Location -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Location">
+        <rdfs:subClassOf rdf:resource="&ssn;FeatureOfInterest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#LowPollenLevel -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#LowPollenLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.knoesis.org/khealth#PollenLevel"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.knoesis.org/khealth#hasQualitativeValue"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;nonNegativeInteger"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxInclusive rdf:datatype="&xsd;nonNegativeInteger">0</xsd:maxInclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#MediumPollenLevel -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#MediumPollenLevel">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.knoesis.org/khealth#PollenLevel"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.knoesis.org/khealth#hasQualitativeValue"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;nonNegativeInteger"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:minExclusive rdf:datatype="&xsd;nonNegativeInteger">0</xsd:minExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.knoesis.org/khealth#hasQualitativeValue"/>
+                        <owl:someValuesFrom>
+                            <rdfs:Datatype>
+                                <owl:onDatatype rdf:resource="&xsd;nonNegativeInteger"/>
+                                <owl:withRestrictions rdf:parseType="Collection">
+                                    <rdf:Description>
+                                        <xsd:maxExclusive rdf:datatype="&xsd;nonNegativeInteger">2</xsd:maxExclusive>
+                                    </rdf:Description>
+                                </owl:withRestrictions>
+                            </rdfs:Datatype>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#MildPersistentAsthma -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#MildPersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#ModeratePersistentAsthma -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#ModeratePersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#NO_Index -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#NO_Index">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#NO_IndexObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#NO_IndexObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#NO_Sensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#NO_Index"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#NO_SensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#NO_Sensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#NO_Sensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#NO_Index"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#NO_SensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#NO_SensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QuantitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Outdoor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Outdoor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorHumidity -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorHumidity">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.knoesis.org/khealth#Humidity"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Outdoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Humidity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorHumidityObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorHumidityObservation">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#HumidityObservation"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:someValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Outdoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorHumiditySensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#OutdoorHumiditySensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorHumidity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorHumiditySensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorHumiditySensor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#HumiditySensor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorHumidity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorHumiditySensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorHumiditySensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#RelativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorTemperature -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#Temperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorTemperatureObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorTemperatureObservation">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#TemperatureObservation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#OutdoorTemperatureSensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:someValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                        <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Outdoor"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorTemperatureSensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorTemperatureSensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorTemperatureSensor">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#TemperatureSensor"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#OutdoorTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#OutdoorTemperatureSensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#OutdoorTemperatureSensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QuantitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Patient -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Patient">
+        <rdfs:subClassOf rdf:resource="&ssn;FeatureOfInterest"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PhysicalProperty -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PhysicalProperty">
+        <owl:equivalentClass rdf:resource="&k;asthma#AsthmaRelatedPhysicalProperty"/>
+        <rdfs:subClassOf rdf:resource="&ssn;Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PhysiologicalProperty -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PhysiologicalProperty">
+        <owl:equivalentClass rdf:resource="&k;asthma#AsthmaRelatedPhysiologicalDisorder"/>
+        <rdfs:subClassOf rdf:resource="&ssn;Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PollenLevel -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PollenLevel">
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PollenLevelObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PollenLevelObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#PollenLevelSensor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#PollenLevelSensorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PollenLevelSensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PollenLevelSensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#PollenLevelSensorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#PollenLevelSensorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#QualitativeObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#QualitativeObservationValue -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#QualitativeObservationValue">
+        <rdfs:subClassOf rdf:resource="&ssn;ObservationValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#QuantitativeObservationValue -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#QuantitativeObservationValue">
+        <rdfs:subClassOf rdf:resource="&ssn;ObservationValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#RelativeObservationValue -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#RelativeObservationValue">
+        <rdfs:subClassOf rdf:resource="&ssn;ObservationValue"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SeverePersistentAsthma -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SeverePersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SleepMonitor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SleepMonitor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#SleepDisorder"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SleepMonitorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SleepMonitorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#BooleanObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SleepObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SleepObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#SleepMonitor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#SleepMonitorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#SleepDisorder"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SymptomObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SymptomObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedBy"/>
+                <owl:onClass rdf:resource="http://www.knoesis.org/khealth#SymptomsMonitor"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;featureOfInterest"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observedProperty"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#Symptom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observationResult"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#SymptomsMonitorOutput"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SymptomsMonitor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SymptomsMonitor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#Symptom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#SymptomsMonitorOutput -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#SymptomsMonitorOutput">
+        <rdfs:subClassOf rdf:resource="&ssn;SensorOutput"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;hasValue"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#BooleanObservationValue"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;isProducedBy"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#SymptomsMonitor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Temperature -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#Temperature">
+        <owl:equivalentClass rdf:resource="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Temperature"/>
+        <rdfs:subClassOf rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#TemperatureObservation -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#TemperatureObservation">
+        <rdfs:subClassOf rdf:resource="&ssn;Observation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#TemperatureSensor -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#TemperatureSensor">
+        <rdfs:subClassOf rdf:resource="&ssn;SensingDevice"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&ssn;observes"/>
+                <owl:allValuesFrom rdf:resource="http://www.knoesis.org/khealth#Temperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#kHealthPlatform -->
+
+    <owl:Class rdf:about="http://www.knoesis.org/khealth#kHealthPlatform">
+        <rdfs:subClassOf rdf:resource="&ssn;Platform"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Albuterol -->
+
+    <owl:Class rdf:about="&k;asthma#Albuterol">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Drug"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaControlLevel -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaControlLevel"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaRelatedPhysicalProperty -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaRelatedPhysicalProperty"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaRelatedPhysiologicalDisorder -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaRelatedPhysiologicalDisorder"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaSeverity -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaSeverity">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&k;asthma#associatedTreatementLevel"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#AsthmaTreatment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaTreatment -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaTreatment"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#AsthmaTrigger -->
+
+    <owl:Class rdf:about="&k;asthma#AsthmaTrigger"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Breathlessness -->
+
+    <owl:Class rdf:about="&k;asthma#Breathlessness">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Symptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Chest_Tightness -->
+
+    <owl:Class rdf:about="&k;asthma#Chest_Tightness">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Symptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Cough -->
+
+    <owl:Class rdf:about="&k;asthma#Cough">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Symptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Drug -->
+
+    <owl:Class rdf:about="&k;asthma#Drug">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Medication"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Exacerbation -->
+
+    <owl:Class rdf:about="&k;asthma#Exacerbation">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Symptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#IntermittentAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#IntermittentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#IntermittentAsthmaTreatment -->
+
+    <owl:Class rdf:about="&k;asthma#IntermittentAsthmaTreatment">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Medication -->
+
+    <owl:Class rdf:about="&k;asthma#Medication">
+        <rdfs:subClassOf rdf:resource="&ssn;Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#MildPersistentAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#MildPersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#MildPersistentAsthmaTreatement -->
+
+    <owl:Class rdf:about="&k;asthma#MildPersistentAsthmaTreatement">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#ModeratePersistentAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#ModeratePersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#ModeratePersistentAsthmaTreatement -->
+
+    <owl:Class rdf:about="&k;asthma#ModeratePersistentAsthmaTreatement">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaTreatment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#NotWellControlledAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#NotWellControlledAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaControlLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#PoorlyControlledAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#PoorlyControlledAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaControlLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#SeverePersistentAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#SeverePersistentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#SeverePersistentAsthmaTreatement -->
+
+    <owl:Class rdf:about="&k;asthma#SeverePersistentAsthmaTreatement">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaTreatment"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&k;asthma#associatedTreatementLevel"/>
+                <owl:allValuesFrom rdf:resource="&k;asthma#SeverePersistentAsthmaTreatement"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#SleepDisorder -->
+
+    <owl:Class rdf:about="&k;asthma#SleepDisorder">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaRelatedPhysiologicalDisorder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Symptom -->
+
+    <owl:Class rdf:about="&k;asthma#Symptom">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaRelatedPhysiologicalDisorder"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#WellControlledAsthma -->
+
+    <owl:Class rdf:about="&k;asthma#WellControlledAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaControlLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.knoesis.org/khealth/asthma#Wheezing -->
+
+    <owl:Class rdf:about="&k;asthma#Wheezing">
+        <rdfs:subClassOf rdf:resource="&k;asthma#Symptom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/riccardo/ontologies/2015/8/IntermittentAsthma -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/riccardo/ontologies/2015/8/IntermittentAsthma">
+        <rdfs:subClassOf rdf:resource="&k;asthma#AsthmaSeverity"/>
+    </owl:Class>
+    
+
+
+    <!-- https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#AirPollution -->
+
+    <rdf:Description rdf:about="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#AirPollution"/>
+    
+
+
+    <!-- https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity -->
+
+    <rdf:Description rdf:about="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Humidity"/>
+    
+
+
+    <!-- https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Temperature -->
+
+    <rdf:Description rdf:about="https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#Temperature"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.knoesis.org/khealth#CO_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#CO_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#CO_Index"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#NO_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#NO_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#NO_Index"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Severity1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#Severity1">
+        <asthma:associatedTreatementLevel rdf:resource="http://www.knoesis.org/khealth#severe_persistent_asthma_treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#Subject5App -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#Subject5App">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#SymptomsMonitor"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#air_quality_index -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#air_quality_index">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#AQI"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#albuterol -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#albuterol">
+        <rdf:type rdf:resource="&k;asthma#Medication"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#control1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#control1"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#control2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#control2"/>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#date1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#date1">
+        <rdf:type rdf:resource="&time;Instant"/>
+        <time:inXSDDateTime rdf:datatype="&xsd;dateTime">2015-06-19T16:48:54.0</time:inXSDDateTime>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#dust_level -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#dust_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#humidity -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#humidity">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#IndoorHumidity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#intermittent_asthma_treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#intermittent_asthma_treatment">
+        <rdf:type rdf:resource="&k;asthma#IntermittentAsthmaTreatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#mild_persistent_asthma_treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#mild_persistent_asthma_treatment">
+        <rdf:type rdf:resource="&k;asthma#MildPersistentAsthmaTreatement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#moderate_persistent_asthma_treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#moderate_persistent_asthma_treatment">
+        <rdf:type rdf:resource="&k;asthma#ModeratePersistentAsthmaTreatement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#mold_level -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#mold_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#EnvironmentalProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#observation1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#observation1">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#SymptomObservation"/>
+        <ssn:observationResultTime rdf:resource="http://www.knoesis.org/khealth#date1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#outdoor_humidity -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#outdoor_humidity">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#OutdoorHumidity"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#outdoor_temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#outdoor_temperature">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#OutdoorTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#patient1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#patient1">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <asthma:hasSeverityLevel rdf:resource="http://www.knoesis.org/khealth#Severity1"/>
+        <asthma:hasControlLevel rdf:resource="http://www.knoesis.org/khealth#control1"/>
+        <asthma:hasAppliedTreatment rdf:resource="http://www.knoesis.org/khealth#severe_persistent_asthma_treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#patient2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#patient2">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#Patient"/>
+        <asthma:hasSeverityLevel rdf:resource="http://www.knoesis.org/khealth#Severity1"/>
+        <asthma:hasControlLevel rdf:resource="http://www.knoesis.org/khealth#control2"/>
+        <asthma:hasAppliedTreatment rdf:resource="http://www.knoesis.org/khealth#moderate_persistent_asthma_treatment"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#pollen_level -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#pollen_level">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#PollenLevel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#severe_persistent_asthma_treatment -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#severe_persistent_asthma_treatment">
+        <rdf:type rdf:resource="&k;asthma#SeverePersistentAsthmaTreatement"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#sleep -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#sleep">
+        <rdf:type rdf:resource="&k;asthma#SleepDisorder"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#steps -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#steps">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#PhysicalProperty"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.knoesis.org/khealth#temperature -->
+
+    <owl:NamedIndividual rdf:about="http://www.knoesis.org/khealth#temperature">
+        <rdf:type rdf:resource="http://www.knoesis.org/khealth#IndoorTemperature"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="urn:swrl#s">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#p">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#t">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="urn:swrl#c">
+        <rdf:type rdf:resource="&swrl;Variable"/>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&k;asthma#ModeratePersistentAsthma"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#IntermittentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#PoorlyControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#SeverePersistentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&k;asthma#SeverePersistentAsthmaTreatement"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#WellControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#PoorlyControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#IntermittentAsthmaTreatment"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#SeverePersistentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#PoorlyControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&k;asthma#MildPersistentAsthmaTreatement"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#SeverePersistentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#MildPersistentAsthmaTreatement"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#MildPersistentAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#WellControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#WellControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&k;asthma#ModeratePersistentAsthmaTreatement"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&k;asthma#ModeratePersistentAsthma"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#PoorlyControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#MildPersistentAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#IntermittentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                        <swrl:classPredicate rdf:resource="&k;asthma#ModeratePersistentAsthmaTreatement"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                        <swrl:classPredicate rdf:resource="&k;asthma#SeverePersistentAsthma"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                        <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#PoorlyControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&swrl;Imp"/>
+        <swrl:head>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:rest rdf:resource="&rdf;nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#WellControlledAsthma"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#c"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:head>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="&swrl;AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="&k;asthma#IntermittentAsthmaTreatment"/>
+                        <swrl:argument1 rdf:resource="urn:swrl#t"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;AtomList"/>
+                                        <rdf:first>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;ClassAtom"/>
+                                                <swrl:classPredicate rdf:resource="&k;asthma#IntermittentAsthma"/>
+                                                <swrl:argument1 rdf:resource="urn:swrl#s"/>
+                                            </rdf:Description>
+                                        </rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="&swrl;AtomList"/>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
+                                                <rdf:first>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasControlLevel"/>
+                                                        <swrl:argument2 rdf:resource="urn:swrl#c"/>
+                                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                                    </rdf:Description>
+                                                </rdf:first>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                                <rdf:first>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                        <swrl:propertyPredicate rdf:resource="&k;asthma#hasAppliedTreatment"/>
+                                        <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                        <swrl:argument2 rdf:resource="urn:swrl#t"/>
+                                    </rdf:Description>
+                                </rdf:first>
+                            </rdf:Description>
+                        </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="&swrl;IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="&k;asthma#hasSeverityLevel"/>
+                                <swrl:argument1 rdf:resource="urn:swrl#p"/>
+                                <swrl:argument2 rdf:resource="urn:swrl#s"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
