@@ -4,8 +4,6 @@ import org.joda.time.DateTime;
 import org.knoesis.khealth.api.questions.QuestionEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public class SleepDisorder implements QuestionEndpoint {
@@ -46,14 +44,7 @@ public class SleepDisorder implements QuestionEndpoint {
 				+ "\"^^xsd:dateTime) "
 				+ "FILTER ( ?qv = \"true\"^^xsd:boolean)" + "}";
 
-		// create and initialize repo
-		System.err.println(queryString);
-		QueryExecution sparqlService = QueryExecutionFactory.sparqlService(
-				KHealthUtils.ontop_endpoint, queryString);
-		// ResultSet res = sparqlService.execSelect();
-
-		Model m = sparqlService.execConstruct();
-		sparqlService.close();
-		return m;
+		return KHealthUtils.executeConstruct("Sleep Disorder Occurence ",
+				queryString);
 	}
 }
