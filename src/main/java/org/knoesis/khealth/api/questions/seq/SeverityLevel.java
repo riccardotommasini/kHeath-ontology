@@ -105,7 +105,7 @@ public class SeverityLevel {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:severity\\/" + timestamp + "\\/1";
+		String levelInstance = ":severity\\/" + timestamp + "\\/1";
 
 		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "
@@ -160,7 +160,7 @@ public class SeverityLevel {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 
-		String levelInstance = "k:severity\\/" + timestamp + "\\/3";
+		String levelInstance = ":severity\\/" + timestamp + "\\/3";
 
 		String queryString = KHealthUtils.prefixes
 				+ "CONSTRUCT { "

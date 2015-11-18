@@ -1,7 +1,6 @@
-package org.knoesis.khealth.api.sensors;
+package org.knoesis.khealth.api.sensors.weather;
 
 import org.joda.time.DateTime;
-import org.knoesis.khealth.api.sensors.weather.WeatherEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.rdf.model.Model;
@@ -18,8 +17,7 @@ public class PollenLevel extends WeatherEndpoint {
 		String observationType = ":PollenLevelObservation";
 
 		return retrieveModel(fromString, toString, observationType);
-
-
+	
 	}
-
+	
 }

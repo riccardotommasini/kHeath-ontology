@@ -1,7 +1,6 @@
 package org.knoesis.khealth.api.sensors.weather;
 
 import org.joda.time.DateTime;
-import org.knoesis.khealth.api.sensors.SensorEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
@@ -11,7 +10,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class AirQualityIndex extends WeatherEndpoint implements SensorEndpoint {
+public class AirQualityIndex extends WeatherEndpoint {
 
 	public Model query(DateTime from, DateTime to) {
 

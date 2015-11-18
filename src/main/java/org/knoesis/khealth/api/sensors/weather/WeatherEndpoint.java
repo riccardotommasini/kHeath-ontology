@@ -59,4 +59,6 @@ public abstract class WeatherEndpoint {
 		sparqlService.close();
 		return m;
 	}
+
+
 }
