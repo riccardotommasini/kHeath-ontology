@@ -4,25 +4,11 @@ import org.joda.time.DateTime;
 import org.knoesis.khealth.api.questions.causes.Drug;
 import org.knoesis.khealth.utils.KHealthUtils;
 
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryExecution;
-import com.hp.hpl.jena.query.QueryExecutionFactory;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class TreatementLevel {
 
-
-	public static void main(String[] args) {
-		insermittentAsthmaCheck();
-		mildPersistentAsthmaCheck();
-		severePersistentAsthmaCheck();
-	}
-
-	public static Model insermittentAsthmaCheck() {
+	public Model insermittentTreatment(DateTime from, DateTime to) {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 		String inner = "SELECT ?p "
@@ -38,25 +24,14 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) ." + "{ " + inner + " }";
 
-		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
+		Model model = new Drug().query(from, to);
 
-		System.out.println("-----Debug------");
+		return KHealthUtils.executeConstruct("insermittentTreatment ",
+				queryString, model);
 
-		System.out.println("symptomModel");
-
-		Query query = QueryFactory.create(KHealthUtils.prefixes + " SELECT ?p "
-				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
-				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) >= 0) ");
-		ResultSet results = QueryExecutionFactory.create(query, model)
-				.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-
-		System.out.println("-----Debug End------");
-
-		return query(queryString, model);
 	}
 
-	public static Model mildPersistentAsthmaCheck() {
+	public Model mildTreatment(DateTime from, DateTime to) {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 		String inner = "SELECT ?p "
@@ -72,29 +47,16 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) ." + "{ " + inner + " }";
 
-		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
+		Model model = new Drug().query(from, to);
 
-
-		System.out.println("-----Debug------");
-
-		System.out.println("symptomModel");
-
-		Query query = QueryFactory.create(KHealthUtils.prefixes + " SELECT ?p "
-				+ "WHERE { ?p asthma:hasAppliedMedication ?d . } "
-				+ "GROUP BY (?p) " + "HAVING (count(distinct ?d) >= 0) ");
-		ResultSet results = QueryExecutionFactory.create(query, model)
-				.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-
-		System.out.println("-----Debug End------");
 		System.err.println(queryString);
 
-		Model resultModel = query(queryString, model);
+		return KHealthUtils.executeConstruct("mildTreatment ", queryString,
+				model);
 
-		return resultModel;
 	}
 
-	public static Model severePersistentAsthmaCheck() {
+	public Model severeTreatment(DateTime from, DateTime to) {
 
 		String timestamp = DateTime.now().toString(KHealthUtils.fmt);
 		String inner = " SELECT ?p (count(?day) as ?days) " + "WHERE { "
@@ -115,43 +77,10 @@ public class TreatementLevel {
 				+ "BIND (URI(REPLACE(STR(?p), \"patient\", \"treatment"
 				+ timestamp + "\")) as ?g) . " + "{" + outer + " }}";
 
-		Model model = new Drug().query(DateTime.parse("2015-06-27T00:00:00"), 7);
+		Model model = new Drug().query(from, to);
 
-		System.out.println("-----Debug------");
+		return KHealthUtils.executeConstruct("severeTreatment ", queryString,
+				model);
 
-		System.out.println("INNER ");
-
-		Query query = QueryFactory.create(KHealthUtils.prefixes + inner);
-
-		ResultSet results = QueryExecutionFactory.create(query, model)
-				.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-
-		System.out.println("Outer ");
-
-		query = QueryFactory.create(KHealthUtils.prefixes + outer);
-
-		results = QueryExecutionFactory.create(query, model).execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-
-		System.out.println("-----Debug End------");
-
-		return query(queryString, model);
-
-	}
-
-	private static Model query(String queryString, Model model) {
-
-		System.err.println(queryString);
-
-		Query query;
-		query = QueryFactory.create(queryString);
-		QueryExecution qexec = QueryExecutionFactory.create(query, model);
-		Model resultModel = qexec.execConstruct();
-		StmtIterator listStatements = resultModel.listStatements();
-		while (listStatements.hasNext()) {
-			System.out.println(listStatements.next());
-		}
-		return resultModel;
 	}
 }
