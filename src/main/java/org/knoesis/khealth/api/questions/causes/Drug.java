@@ -1,6 +1,7 @@
-package org.knoesis.khealth.api.questions;
+package org.knoesis.khealth.api.questions.causes;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.questions.QuestionEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.QueryExecution;

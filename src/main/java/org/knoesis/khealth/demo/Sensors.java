@@ -1,6 +1,11 @@
-package org.knoesis.khealth.api.sensors;
+package org.knoesis.khealth.demo;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.sensors.PollenLevel;
+import org.knoesis.khealth.api.sensors.weather.AirQualityIndex;
+import org.knoesis.khealth.api.sensors.weather.Humidity;
+import org.knoesis.khealth.api.sensors.weather.Temperature;
+import org.knoesis.khealth.api.sensors.weather.WeatherEndpoint;
 
 import com.hp.hpl.jena.graph.Graph;
 import com.hp.hpl.jena.graph.Triple;
@@ -16,7 +21,7 @@ import com.hp.hpl.jena.util.FileManager;
 
 public class Sensors {
 	public static void main(String[] args) {
-		SensorEndpointImpl aqi = new AirQualityIndex();
+		WeatherEndpoint aqi = new AirQualityIndex();
 		Humidity humidity = new Humidity();
 		Temperature temp = new Temperature();
 		PollenLevel p = new PollenLevel();

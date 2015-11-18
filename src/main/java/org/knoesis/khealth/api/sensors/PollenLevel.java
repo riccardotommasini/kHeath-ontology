@@ -1,11 +1,12 @@
 package org.knoesis.khealth.api.sensors;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.sensors.weather.WeatherEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class PollenLevel extends SensorEndpointImpl {
+public class PollenLevel extends WeatherEndpoint {
 
 	public Model query(DateTime from, DateTime to) {
 

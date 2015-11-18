@@ -1,6 +1,8 @@
-package org.knoesis.khealth.api.questions;
+package org.knoesis.khealth.api.questions.seq;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.questions.causes.SleepDisorder;
+import org.knoesis.khealth.api.questions.causes.Symptoms;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.graph.compose.Union;

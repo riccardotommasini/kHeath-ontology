@@ -1,4 +1,4 @@
-package org.knoesis.khealth.api.sensors;
+package org.knoesis.khealth.api.sensors.weather;
 
 import org.joda.time.DateTime;
 import org.knoesis.khealth.utils.KHealthUtils;
@@ -7,7 +7,7 @@ import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public abstract class SensorEndpointImpl {
+public abstract class WeatherEndpoint {
 
 	public  Model daylyQuery(DateTime d) {
 		return query(d, 1);

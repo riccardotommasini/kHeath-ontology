@@ -1,6 +1,7 @@
-package org.knoesis.khealth.api.sensors;
+package org.knoesis.khealth.api.sensors.weather;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.sensors.SensorEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
@@ -10,11 +11,11 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class Humidity extends SensorEndpointImpl {
+public class Temperature extends WeatherEndpoint implements SensorEndpoint {
 
-	public static final String outdoor = ":OutdoorHumidityObservation";
+	public static final String outdoor = ":OutdoorTemperatureObservation";
 
-	public static final String indoor = ":IndoorHumidityObservation";
+	public static final String indoor = ":IndoorTemperatureObservation";
 
 	public Model query(DateTime from, DateTime to) {
 
@@ -30,7 +31,7 @@ public class Humidity extends SensorEndpointImpl {
 
 		Model m = retrieveModel(fromString, toString, indoor);
 
-		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?hum_avg) (max(?time) as ?current)"
+		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?temp_avg) (max(?time) as ?current)"
 				+ "WHERE { "
 				+ "?obs a "
 				+ indoor
@@ -64,13 +65,13 @@ public class Humidity extends SensorEndpointImpl {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ "CONSTRUCT { ?i a :IndoorHumidity ; wea:hasValue ?hum_avg . }"
+						+ "CONSTRUCT { ?i a :IndoorTemperature ; wea:hasValue ?temp_avg . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
 						+ "{ "
 						+ inner
 						+ "}"
-						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#hum-in_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
+						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#temp-in_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
 						+ "}");
 
 		return QueryExecutionFactory.create(query, m).execConstruct();
@@ -87,7 +88,7 @@ public class Humidity extends SensorEndpointImpl {
 
 		KHealthUtils.debug(m);
 
-		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?hum_avg) (max(?time) as ?current)"
+		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?temp_avg) (max(?time) as ?current)"
 				+ "WHERE { "
 				+ "?obs a "
 				+ outdoor
@@ -121,13 +122,13 @@ public class Humidity extends SensorEndpointImpl {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ "CONSTRUCT { ?i a :OutdoorHumidity ; wea:hasValue ?hum_avg . }"
+						+ "CONSTRUCT { ?i a :OutdoorTemperature ; wea:hasValue ?temp_avg . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
 						+ "{ "
 						+ inner
 						+ "}"
-						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#hum-out_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
+						+ "bind ( URI(CONCAT(CONCAT(CONCAT(\"http://www.knoesis.org/khealth#temp-out_\", STR(?year)),STR(?month)), STR(?day))) as ?i ) ."
 						+ "}");
 
 		return QueryExecutionFactory.create(query, m).execConstruct();

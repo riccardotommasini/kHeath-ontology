@@ -1,4 +1,4 @@
-package org.knoesis.khealth.api.questions;
+package org.knoesis.khealth.api.questions.seq;
 
 import org.knoesis.khealth.utils.KHealthUtils;
 

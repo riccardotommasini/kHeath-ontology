@@ -1,6 +1,7 @@
-package org.knoesis.khealth.api.sensors;
+package org.knoesis.khealth.api.sensors.weather;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.sensors.SensorEndpoint;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
@@ -10,7 +11,7 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
-public class AirQualityIndex extends SensorEndpointImpl {
+public class AirQualityIndex extends WeatherEndpoint implements SensorEndpoint {
 
 	public Model query(DateTime from, DateTime to) {
 
@@ -22,7 +23,7 @@ public class AirQualityIndex extends SensorEndpointImpl {
 		String observationType = ":AQIObservation";
 
 		Model m = retrieveModel(fromString, toString, observationType);
-		
+
 		KHealthUtils.debug(m);
 
 		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?aqi_avg) (max(?time) as ?current)"
