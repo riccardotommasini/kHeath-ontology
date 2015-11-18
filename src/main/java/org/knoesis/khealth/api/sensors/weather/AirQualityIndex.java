@@ -6,8 +6,6 @@ import org.knoesis.khealth.utils.KHealthUtils;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public class AirQualityIndex extends WeatherEndpoint {
@@ -22,8 +20,6 @@ public class AirQualityIndex extends WeatherEndpoint {
 		String observationType = ":AQIObservation";
 
 		Model m = retrieveModel(fromString, toString, observationType);
-
-		KHealthUtils.debug(m);
 
 		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?aqi_avg) (max(?time) as ?current)"
 				+ "WHERE { "
@@ -47,18 +43,6 @@ public class AirQualityIndex extends WeatherEndpoint {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ inner);
-		ResultSet r = QueryExecutionFactory.create(query, m).execSelect();
-		ResultSetFormatter.out(System.out, r, query);
-
-		query = QueryFactory
-				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
-						+ "PREFIX : <http://www.knoesis.org/khealth#> "
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-						+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-						+ "PREFIX time: <http://www.w3.org/2006/time#> "
-						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
 						+ "CONSTRUCT { ?i a wea:AirPollution ; wea:hasValue ?aqi_avg ; :hasAssociatedDateTime ?current. }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
@@ -70,6 +54,52 @@ public class AirQualityIndex extends WeatherEndpoint {
 
 		return QueryExecutionFactory.create(query, m).execConstruct();
 
+	}
+
+	public boolean isGood(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v . "
+				+ "FILTER ( ?v <= \"50\"^^xsd:float)" + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isModerate(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE { ?s wea:hasValue ?v . "
+				+ "FILTER (?v > \"50\"^^xsd:float) "
+				+ "FILTER (?v <= \"100\"^^xsd:float) " + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isUSG(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE { ?s wea:hasValue ?v . "
+				+ "FILTER (?v > \"100\"^^xsd:float)"
+				+ "FILTER (?v <= \"150\"^^xsd:float) " + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isUnhealthy(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v . "
+				+ "FILTER (?v > \"150\"^^xsd:float)"
+				+ "FILTER (?v <= \"200\"^^xsd:float)" + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isVeryUnhealthy(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v . "
+				+ "FILTER (?v > \"200\"^^xsd:float)"
+				+ "FILTER (?v <= \"300\"^^xsd:float)" + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isHazardous(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s :hasObservationValue ?v . "
+				+ "FILTER (?v > \"300\"^^xsd:float) " + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
 	}
 
 }

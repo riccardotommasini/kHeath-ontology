@@ -85,8 +85,6 @@ public class Humidity extends WeatherEndpoint  {
 
 		Model m = retrieveModel(fromString, toString, outdoor);
 
-		KHealthUtils.debug(m);
-
 		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?hum_avg) (max(?time) as ?current)"
 				+ "WHERE { "
 				+ "?obs a "

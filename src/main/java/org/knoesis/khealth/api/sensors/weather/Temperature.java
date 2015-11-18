@@ -52,18 +52,6 @@ public class Temperature extends WeatherEndpoint {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ inner);
-		ResultSet r = QueryExecutionFactory.create(query, m).execSelect();
-		ResultSetFormatter.out(System.out, r, query);
-
-		query = QueryFactory
-				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
-						+ "PREFIX : <http://www.knoesis.org/khealth#> "
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-						+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-						+ "PREFIX time: <http://www.w3.org/2006/time#> "
-						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
 						+ "CONSTRUCT { ?i a :IndoorTemperature ; wea:hasValue ?temp_avg . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
@@ -84,8 +72,6 @@ public class Temperature extends WeatherEndpoint {
 		System.out.println("To " + toString);
 
 		Model m = retrieveModel(fromString, toString, outdoor);
-
-		KHealthUtils.debug(m);
 
 		String inner = "SELECT ?p ?year ?month ?day (avg(?qv) as ?temp_avg) (max(?time) as ?current)"
 				+ "WHERE { "
@@ -109,18 +95,6 @@ public class Temperature extends WeatherEndpoint {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ inner);
-		ResultSet r = QueryExecutionFactory.create(query, m).execSelect();
-		ResultSetFormatter.out(System.out, r, query);
-
-		query = QueryFactory
-				.create("PREFIX wea: <https://www.auto.tuwien.ac.at/downloads/thinkhome/ontology/WeatherOntology.owl#> "
-						+ "PREFIX : <http://www.knoesis.org/khealth#> "
-						+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-						+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
-						+ "PREFIX time: <http://www.w3.org/2006/time#> "
-						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
-						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
 						+ "CONSTRUCT { ?i a :OutdoorTemperature ; wea:hasValue ?temp_avg . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
@@ -132,4 +106,27 @@ public class Temperature extends WeatherEndpoint {
 
 		return QueryExecutionFactory.create(query, m).execConstruct();
 	}
+
+	public boolean isLow(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v "
+				+ "FILTER (?v <= \"60\"^^xsd:float)}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isMedium(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v "
+				+ "FILTER (?v > \"60\"^^xsd:float)"
+				+ "FILTER (?v <= \"80\"^^xsd:float)" + "}");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
+	public boolean isHigh(Model m) {
+		Query sel = QueryFactory.create(KHealthUtils.prefixes
+				+ " ASK WHERE {?s wea:hasValue ?v "
+				+ "FILTER (?v > \"80\"^^xsd:float) }");
+		return QueryExecutionFactory.create(sel, m).execAsk();
+	}
+
 }
