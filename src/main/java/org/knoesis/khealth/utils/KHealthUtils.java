@@ -32,6 +32,12 @@ public class KHealthUtils {
 		ResultSetFormatter.out(System.out, res, sel);
 	}
 
+	public static void debug(Model m, String q) {
+		Query sel = QueryFactory.create(q);
+		ResultSet res = QueryExecutionFactory.create(sel, m).execSelect();
+		ResultSetFormatter.out(System.out, res, sel);
+	}
+
 	public static String now() {
 		return DateTime.now().toString(KHealthUtils.fmt);
 	}
