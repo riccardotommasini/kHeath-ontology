@@ -1,6 +1,8 @@
-package org.knoesis.khealth.api.questions.seq;
+package org.knoesis.khealth.demo;
 
 import org.joda.time.DateTime;
+import org.knoesis.khealth.api.questions.seq.SeverityLevel;
+import org.knoesis.khealth.api.questions.seq.TreatementLevel;
 import org.knoesis.khealth.utils.KHealthUtils;
 
 import com.hp.hpl.jena.query.Query;
@@ -16,7 +18,7 @@ public class ContorlLevel {
 
 	public static void main(String[] args) {
 
-		DateTime from = DateTime.parse("2015-06-19T00:00:00");
+		DateTime from = DateTime.parse("2015-06-14T00:00:00");
 		DateTime to = DateTime.parse("2015-06-21T00:00:00");
 
 		SeverityLevel severityLevelEndpoint = new SeverityLevel();
@@ -24,17 +26,21 @@ public class ContorlLevel {
 
 		Model intermittentSeverity = severityLevelEndpoint
 				.intermittentAsthmaCheck(from, to);
+		KHealthUtils.debug(intermittentSeverity);
 		Model intermittentTreatement = treatementLevelEndpoint
 				.insermittentTreatment(from, to);
-
+		KHealthUtils.debug(intermittentTreatement);
 		Model mildSeverity = severityLevelEndpoint.mildPersistentAsthmaCheck(
-				from, to);
+				to.minusDays(30), to);
+		KHealthUtils.debug(mildSeverity);
 		Model mildTreatement = treatementLevelEndpoint.mildTreatment(from, to);
-
+		KHealthUtils.debug(mildTreatement);
 		Model severeSeverity = severityLevelEndpoint
 				.severePersistentAsthmaCheck(from, to);
+		KHealthUtils.debug(severeSeverity);
 		Model severeTreatement = treatementLevelEndpoint.severeTreatment(from,
 				to);
+		KHealthUtils.debug(severeTreatement);
 
 		System.err.println("INTERMITTENT");
 		query(ModelFactory.createDefaultModel().union(intermittentTreatement)
