@@ -85,38 +85,14 @@ source		SELECT QID, PID, DATE
 			WHERE QID IN (2,14);
 
 mappingId	DrugObservedProperty (Albuterol)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty asthma:Albuterol . 
+target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty k:property/{QID}/{PID}/{DATE} . k:property/{QID}/{PID}/{DATE} a asthma:Albuterol . 
 source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID IN (2,14);
 
-mappingId	SleepMonitor (App)
+mappingId	SleepMonitor
 target		k:sensor/{PID} a :SleepMonitor . 
 source		SELECT PID
-			FROM asthmadb.Answers
-			WHERE QID = 1;
-
-mappingId	SleepObservation (App)
-target		k:observation/{QID}/{PID}/{DATE} a :SleepObservation ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
-source		SELECT QID, PID, DATE
-			FROM asthmadb.Answers
-			WHERE QID = 2;
-
-mappingId	SleepObservationValue (App)
-target		k:observation/value/{QID}/{PID}/{DATE} a :BooleanObservationValue ; :hasQualitativeValue {Value}^^xsd:boolean . 
-source		SELECT PID, QID, DATE
-			FROM asthmadb.Answers
-			WHERE QID = 1;
-
-mappingId	SleepMonitorOutput (App)
-target		k:observation/output/{QID}/{PID}/{DATE} a :SleepMonitorOutput ; ssn:hasValue k:observation/value/{QID}/{PID}/{DATE} ; ssn:observedBy k:sensor/{PID} . 
-source		SELECT QID, PID, DATE
-			FROM asthmadb.Answers
-			WHERE QID IN (1,14);
-
-mappingId	SleepObservedProperty (App)
-target		k:observation/{QID}/{PID}/{DATE} ssn:observedProperty :sleep . 
-source		SELECT QID, PID, DATE
 			FROM asthmadb.Answers
 			WHERE QID = 1;
 
@@ -169,7 +145,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 0;
 
 mappingId	NO_IndexObservedProperty
-target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty :NO_index . 
+target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty k:property/{FID}/{PID}/{DATE} . k:property/{FID}/{PID}/{DATE} a :NO_Index . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 0;
@@ -199,7 +175,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 1;
 
 mappingId	CO_IndexObservedProperty
-target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty :CO_index . 
+target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty k:property/{FID}/{PID}/{DATE} . k:property/{FID}/{PID}/{DATE} a :CO_Index . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 1;
@@ -283,7 +259,7 @@ source		SELECT FID, PID, DATE
 			WHERE FID = 5;
 
 mappingId	AQIObservedProperty
-target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty :air_quality_index . 
+target		k:observation/{FID}/{PID}/{DATE} ssn:observedProperty k:property/{FID}/{PID}/{DATE} . k:property/{FID}/{PID}/{DATE} a :AQI . 
 source		SELECT FID, PID, DATE
 			FROM asthmadb.Observations
 			WHERE FID = 5;
@@ -295,10 +271,11 @@ source		SELECT QID, PID, DATE
 			WHERE QID IN (7,8,9,10);
 
 mappingId	SleepObservation
-target		k:observation/{QID}/{PID}/{DATE} a :SleepObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
-source		SELECT QID, PID, DATE
+target		k:observation/{QID}/{PID}/{DATE} a :SleepObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} ; ssn:observedProperty k:property/{QID}/{PID}/{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
+source		SELECT distinct QID, PID, DATE
 			FROM asthmadb.Answers
-			WHERE QID = 1;
+			WHERE QID = 1
+			GROUP BY year(DATE), month(DATE) ,day(DATE);
 
 mappingId	SleepObservationValue
 target		k:observation/value/{QID}/{PID}/{DATE} a :BooleanObservationValue ; :hasQualitativeValue {Value}^^xsd:boolean . 
