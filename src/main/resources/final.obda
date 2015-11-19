@@ -272,10 +272,9 @@ source		SELECT QID, PID, DATE
 
 mappingId	SleepObservation
 target		k:observation/{QID}/{PID}/{DATE} a :SleepObservation ; ssn:featureOfInterest k:patient/{PID} ; ssn:observationResult k:observation/output/{QID}/{PID}/{DATE} ; ssn:observationResultTime k:{DATE} ; ssn:observedProperty k:property/{QID}/{PID}/{DATE} . k:{DATE} a time:Instant ; time:xsdDateTime {DATE}^^xsd:dateTime . 
-source		SELECT distinct QID, PID, DATE
+source		SELECT  QID, PID, DATE
 			FROM asthmadb.Answers
-			WHERE QID = 1
-			GROUP BY year(DATE), month(DATE) ,day(DATE);
+			WHERE QID = 1;
 
 mappingId	SleepObservationValue
 target		k:observation/value/{QID}/{PID}/{DATE} a :BooleanObservationValue ; :hasQualitativeValue {Value}^^xsd:boolean . 
