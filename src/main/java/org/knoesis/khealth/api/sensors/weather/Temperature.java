@@ -6,8 +6,6 @@ import org.knoesis.khealth.utils.KHealthUtils;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.Model;
 
 public class Temperature extends WeatherEndpoint {
@@ -52,7 +50,7 @@ public class Temperature extends WeatherEndpoint {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ "CONSTRUCT { ?i a :IndoorTemperature ; wea:hasValue ?temp_avg . }"
+						+ "CONSTRUCT { ?i a :IndoorTemperature ; wea:hasValue ?temp_avg ; :hasAssociatedDateTime ?time . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
 						+ "{ "
@@ -95,7 +93,7 @@ public class Temperature extends WeatherEndpoint {
 						+ "PREFIX time: <http://www.w3.org/2006/time#> "
 						+ "PREFIX ssn: <http://purl.oclc.org/NET/ssnx/ssn#> "
 						+ "PREFIX asthma: <http://www.knoesis.org/khealth/asthma#> "
-						+ "CONSTRUCT { ?i a :OutdoorTemperature ; wea:hasValue ?temp_avg . }"
+						+ "CONSTRUCT { ?i a :OutdoorTemperature ; wea:hasValue ?temp_avg ; :hasAssociatedDateTime ?time . }"
 						+ "WHERE { "
 						+ "?instant time:xsdDateTime ?time  . "
 						+ "{ "
